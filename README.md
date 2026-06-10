@@ -1,6 +1,6 @@
-# OxUCL (Unsri Cyber Lab) - Main Blog & Write-Ups
+# 0xUCL (Unsri Cyber Lab) - Main Blog & Write-Ups
 
-Repositori ini adalah pusat dokumentasi, publikasi *write-up* CTF, pembelajaran *exploit*, dan arsip penyelesaian soal dari komunitas OxUCL. Website ini dibangun menggunakan [Jekyll](https://jekyllrb.com/) dan secara otomatis di-deploy ke **GitHub Pages**.
+Repositori ini adalah pusat dokumentasi, publikasi *write-up* CTF, pembelajaran *exploit*, dan arsip penyelesaian soal dari komunitas 0xUCL. Website ini dibangun menggunakan [Jekyll](https://jekyllrb.com/) dan secara otomatis di-deploy ke **GitHub Pages**.
 
 🌍 **Live Website:** [https://0xucl.github.io/Main-Blog_0xUCL/](https://0xucl.github.io/Main-Blog_0xUCL/)
 

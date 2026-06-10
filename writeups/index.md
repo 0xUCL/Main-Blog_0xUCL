@@ -7,7 +7,7 @@ nav:
 
 # {% include icon.html icon="fa-solid fa-file-code" %}Write Up CTF
 
-Arsip write-up ini berisi dokumentasi penyelesaian soal CTF dari anggota OxUCL.
+Arsip write-up ini berisi dokumentasi penyelesaian soal CTF dari anggota 0xUCL.
 Gunakan search atau tag untuk mencari kategori tertentu.
 
 {% include section.html %}

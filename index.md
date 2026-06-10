@@ -2,12 +2,12 @@
 title: Home
 nav:
   order: 1
-  tooltip: Beranda OxUCL
+  tooltip: Beranda 0xUCL
 ---
 
 <div class="hero-panel">
   <div class="hero-eyebrow"><i class="fa-solid fa-shield-halved"></i> CTF Write-up Archive</div>
-  <h1 class="hero-title">OxUCL</h1>
+  <h1 class="hero-title">0xUCL</h1>
   <p class="hero-subtitle">
     Portal komunitas <strong>Unsri Cyber Lab</strong> untuk mengarsipkan write-up CTF,
     catatan pembelajaran, dan dokumentasi eksploitasi secara rapi, ringan, dan mudah dibaca.
@@ -26,7 +26,7 @@ nav:
   <div class="profile-card">
     <i class="icon fa-solid fa-terminal"></i>
     <h3>Belajar Lewat Praktik</h3>
-    <p>OxUCL berfokus pada pembelajaran cyber security melalui CTF, analisis kasus, dan dokumentasi solusi yang runtut.</p>
+    <p>0xUCL berfokus pada pembelajaran cyber security melalui CTF, analisis kasus, dan dokumentasi solusi yang runtut.</p>
   </div>
   <div class="profile-card">
     <i class="icon fa-solid fa-file-lines"></i>

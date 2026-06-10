@@ -2,18 +2,18 @@
 title: Profil
 nav:
   order: 2
-  tooltip: Profil komunitas OxUCL
+  tooltip: Profil komunitas 0xUCL
 ---
 
-# {% include icon.html icon="fa-solid fa-shield-halved" %}Profil OxUCL
+# {% include icon.html icon="fa-solid fa-shield-halved" %}Profil 0xUCL
 
 <div class="profile-logo-wrap">
-  <img class="profile-logo" src="{{ 'images/oxucl-logo.jpg' | relative_url }}" alt="OxUCL Unsri Cyber Lab logo">
+  <img class="profile-logo" src="{{ 'images/oxucl-logo.jpg' | relative_url }}" alt="0xUCL Unsri Cyber Lab logo">
 </div>
 
-**OxUCL — Unsri Cyber Lab** adalah komunitas cyber security yang menjadi ruang belajar, diskusi, dan dokumentasi bagi mahasiswa yang tertarik pada dunia keamanan siber.
+**0xUCL — Unsri Cyber Lab** adalah komunitas cyber security yang menjadi ruang belajar, diskusi, dan dokumentasi bagi mahasiswa yang tertarik pada dunia keamanan siber.
 
-Melalui Capture The Flag, sharing session, riset kecil, dan penulisan write-up, OxUCL berusaha membangun budaya belajar yang praktis, terbuka, dan terdokumentasi dengan baik. Website ini dibuat sebagai arsip pembelajaran agar proses penyelesaian challenge tidak berhenti setelah kompetisi selesai, tetapi bisa dibaca ulang, dipelajari, dan dikembangkan bersama.
+Melalui Capture The Flag, sharing session, riset kecil, dan penulisan write-up, 0xUCL berusaha membangun budaya belajar yang praktis, terbuka, dan terdokumentasi dengan baik. Website ini dibuat sebagai arsip pembelajaran agar proses penyelesaian challenge tidak berhenti setelah kompetisi selesai, tetapi bisa dibaca ulang, dipelajari, dan dikembangkan bersama.
 
 <div class="terminal-box">
   <div class="terminal-bar"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span></div>
