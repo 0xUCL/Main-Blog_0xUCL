@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="id" data-dark="true">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--
+  put your analytics (e.g. Google Analytics) tracking code here
+-->
+
+  <!--
+  put your search engine verification (e.g. Google Search Console) tag here
+-->
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Korespondensi Tersegel | OxUCL</title>
+
+<link rel="icon" href="/Main-Blog_0xUCL/images/icon.png">
+
+<meta name="title" content="Korespondensi Tersegel">
+<meta name="description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
+
+<meta property="og:title" content="Korespondensi Tersegel">
+<meta property="og:site_title" content="OxUCL">
+<meta property="og:description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
+<meta property="og:url" content="https://0xucl.github.io/Main-Blog_0xUCL">
+<meta property="og:image" content="/Main-Blog_0xUCL/images/share.jpg">
+<meta property="og:locale" content="en_US">
+
+<meta property="twitter:title" content="Korespondensi Tersegel">
+<meta property="twitter:description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
+<meta property="twitter:url" content="https://0xucl.github.io/Main-Blog_0xUCL">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="/Main-Blog_0xUCL/images/share.jpg">
+
+
+  <meta name="author" content="azizul-manal-gaumalanga">
+  <meta property="og:type" content="article">
+  <meta property="og:updated_time" content="2026-06-10T11:17:13+00:00">
+  <meta property="article:published_time" content="2026-06-10T00:00:00+00:00">
+  <meta property="article:modified_time" content="2026-06-10T11:17:13+00:00">
+  <meta name="revised" content="2026-06-10T11:17:13+00:00">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "BlogPosting",
+      "author": { "@type": "Person", "name": "Korespondensi Tersegel" },
+      "datePublished": "2026-06-10T00:00:00+00:00",
+      "dateModified": "2026-06-10T11:17:13+00:00",
+    
+    "name": "Korespondensi Tersegel",
+    "description": "Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.",
+    "headline": "Korespondensi Tersegel",
+    "publisher": {
+      "@type": "Organization",
+      "logo": { "@type": "ImageObject", "url": "/Main-Blog_0xUCL/images/icon.png" }
+    },
+    "url": "https://0xucl.github.io/Main-Blog_0xUCL"
+  }
+</script>
+
+<link rel="alternate" type="application/rss+xml" href="https://0xucl.github.io/Main-Blog_0xUCL/feed.xml">
+
+  <!-- Google Fonts -->
+<!-- automatically get url from fonts used in theme file -->
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?display=swap&&family=Barlow:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700&amp;family=Roboto+Mono:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700" rel="stylesheet">
+
+<!-- Font Awesome icons (load asynchronously due to size) -->
+
+<link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet" media="none" onload="this.removeAttribute('media'); this.onload = null;">
+<noscript>
+  <link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet">
+</noscript>
+
+  <!-- third party styles -->
+<!-- https://stylishthemes.github.io/Syntax-Themes/pygments/ -->
+<link href="https://cdn.jsdelivr.net/gh/StylishThemes/Syntax-Themes/pygments/css-github/pygments-tomorrow-night-eighties.css" rel="stylesheet">
+
+<!-- include all sass in styles folder -->
+
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/-theme.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/alert.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/all.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/anchor.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/background.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/body.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/bold.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/button.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/card.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/checkbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/citation.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/code.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/cols.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/dark-toggle.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/details.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/feature.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/figure.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/float.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/font.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/footer.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/form.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/grid.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/header.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/heading.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/highlight.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/icon.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/image.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/link.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/list.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/main.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/member.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/oxucl.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/paragraph.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/portrait.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/post-excerpt.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/post-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/post-nav.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/quote.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/rule.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/search-box.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/search-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/section.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/table.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/tags.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/textbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/tooltip.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/util.css" rel="stylesheet">
+  
+
+
+<!-- include all css in styles folder -->
+
+
+
+  <!-- third party scripts -->
+<script src="https://unpkg.com/@popperjs/core@2" defer></script>
+<script src="https://unpkg.com/tippy.js@6" defer></script>
+<script src="https://unpkg.com/mark.js@8" defer></script>
+
+<!-- include all js in scripts folder -->
+
+
+  <script src="/Main-Blog_0xUCL/_scripts/anchors.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/dark-mode.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/fetch-tags.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/search.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/site-search.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/table-wrap.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/tooltip.js"></script>
+
+
+</head>
+
+  <body>
+    
+
+
+
+
+
+
+
+<header class="background site-header" data-dark="true">
+  <a href="/Main-Blog_0xUCL/" class="home">
+    
+      <span class="logo">
+        
+          <img src="/Main-Blog_0xUCL/images/logo.jpg" alt="OxUCL logo">
+        
+      </span>
+    
+    
+      <span class="title-text" data-tooltip="Home">
+        
+          <span class="title">OxUCL</span>
+        
+        
+          <span class="subtitle">Unsri Cyber Lab</span>
+        
+      </span>
+    
+  </a>
+
+  <input class="nav-toggle" type="checkbox" aria-label="show/hide nav">
+
+  <nav>
+    
+    
+      
+        <a href="/Main-Blog_0xUCL/" data-tooltip="Beranda OxUCL">
+          Home
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/profil/" data-tooltip="Profil komunitas OxUCL">
+          Profil
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/writeups/" data-tooltip="Arsip write-up CTF">
+          Write Up
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/kategori/" data-tooltip="Kategori soal CTF">
+          Kategori
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/team/" data-tooltip="Member dan kontributor">
+          Team
+        </a>
+      
+    
+  </nav>
+</header>
+
+    <main>
+      <!--
+  modify main content of page:
+  - add section breaks
+  - attach section properties
+  - filter out blank sections
+-->
+
+
+
+
+
+
+  
+  
+  
+
+  <section class="background" data-size="1" style="--image: url('/Main-Blog_0xUCL/images/oxucl-logo.jpg')">
+    <!--
+  <background>images/oxucl-logo.jpg</background>
+  <dark></dark>
+  <size>1</size>
+-->
+
+
+<h1 class="center">Korespondensi Tersegel</h1>
+
+<div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/Main-Blog_0xUCL/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/Main-Blog_0xUCL/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/Main-Blog_0xUCL/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/Main-Blog_0xUCL/writeups?search=%22tag:%20crypto%22" class="tag" data-tooltip='Show items with the tag "crypto"'>
+        crypto
+      </a>
+    
+      <a href="/Main-Blog_0xUCL/writeups?search=%22tag:%20puzzle%22" class="tag" data-tooltip='Show items with the tag "puzzle"'>
+        puzzle
+      </a>
+    
+      <a href="/Main-Blog_0xUCL/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+
+<h2 id="detail-soal">Detail Soal</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nama Challenge</td>
+      <td>Korespondensi Tersegel</td>
+    </tr>
+    <tr>
+      <td>Kategori</td>
+      <td>Crypto &amp; Puzzle</td>
+    </tr>
+    <tr>
+      <td>Event</td>
+      <td>ZERO_DAY // Scholar Battle</td>
+    </tr>
+    <tr>
+      <td>Poin</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>Difficulty</td>
+      <td>Easy</td>
+    </tr>
+    <tr>
+      <td>File</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">readme.txt</code>, <code class="language-plaintext highlighter-rouge">company_logo.jpg</code>, <code class="language-plaintext highlighter-rouge">cipher_text.txt</code>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="deskripsi-singkat">Deskripsi Singkat</h2>
+
+<p>Pada challenge ini, diberikan sebuah teks terenkripsi yang diduga merupakan korespondensi internal dari PT Arkana Sistem. Tugas utama dari challenge ini adalah menemukan metode enkripsi yang digunakan, mencari kunci dekripsi, lalu mendekripsi pesan untuk mendapatkan flag.</p>
+
+<h2 id="analisis-awal">Analisis Awal</h2>
+
+<p>Langkah pertama yang saya lakukan adalah membaca file <code class="language-plaintext highlighter-rouge">readme.txt</code>. Dari file tersebut diketahui bahwa pesan dienkripsi menggunakan metode klasik, dan kunci dekripsi dapat ditemukan pada salah satu file lain di dalam archive. Readme juga memberikan petunjuk untuk memeriksa data yang tidak terlihat secara visual.</p>
+
+<p>Selanjutnya, saya membuka file <code class="language-plaintext highlighter-rouge">cipher_text.txt</code>. Isi file tersebut berupa teks acak dengan huruf kapital, tetapi susunannya masih menyerupai format surat atau korespondensi. Di dalam teks tersebut juga terdapat bagian yang terlihat seperti flag, yaitu:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SLAX{F1G3A3R3_4RB4X4_D3PRYGD3D}
+</code></pre></div></div>
+
+<p>Bagian ini kemungkinan besar merupakan flag yang masih terenkripsi. Karena readme menyebutkan bahwa kunci ada pada file lain dan perlu memeriksa data yang tidak terlihat secara visual, saya kemudian mengecek metadata dari file <code class="language-plaintext highlighter-rouge">company_logo.jpg</code>.</p>
+
+<h2 id="langkah-penyelesaian">Langkah Penyelesaian</h2>
+
+<ol>
+  <li>Membaca file <code class="language-plaintext highlighter-rouge">readme.txt</code> untuk mencari petunjuk awal.</li>
+  <li>Dari readme, diketahui bahwa:
+    <ul>
+      <li>Cipher yang digunakan adalah metode klasik</li>
+      <li>Kunci berada di salah satu file lain</li>
+      <li>Perlu memeriksa data tersembunyi atau metadata</li>
+    </ul>
+  </li>
+  <li>Mengecek metadata gambar <code class="language-plaintext highlighter-rouge">company_logo.jpg</code> menggunakan perintah:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exiftool company_logo.jpg
+</code></pre></div></div>
+
+<ol>
+  <li>Dari metadata gambar ditemukan komentar:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kunci: ARKANA
+</code></pre></div></div>
+
+<ol>
+  <li>Karena kunci berupa kata, metode klasik yang sesuai adalah <strong>Vigenere Cipher</strong>.</li>
+  <li>Melakukan dekripsi isi <code class="language-plaintext highlighter-rouge">cipher_text.txt</code> menggunakan <strong>Vigenere Cipher</strong> dengan key:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ARKANA
+</code></pre></div></div>
+
+<ol>
+  <li>Setelah didekripsi, teks menjadi terbaca sebagai korespondensi internal. Bagian flag yang awalnya:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SLAX{F1G3A3R3_4RB4X4_D3PRYGD3D}
+</code></pre></div></div>
+
+<p>berubah menjadi:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FLAG{V1G3N3R3_4RK4N4_D3CRYPT3D}
+</code></pre></div></div>
+
+<ol>
+  <li>Karena instruksi challenge meminta submit flag dalam format huruf kecil, maka flag diubah menjadi lowercase.</li>
+</ol>
+
+<h2 id="flag">Flag</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flag{v1g3n3r3_4rk4n4_d3crypt3d}
+</code></pre></div></div>
+
+<h2 id="kesimpulan--hal-yang-dipelajari">Kesimpulan / Hal yang Dipelajari</h2>
+
+<p>Dari challenge ini, saya belajar bahwa pada soal kriptografi, petunjuk tidak selalu berada langsung di file ciphertext. File pendukung seperti gambar juga bisa menyimpan informasi penting melalui metadata. Selain itu, ketika sebuah cipher klasik menggunakan kunci berupa kata, salah satu metode yang perlu dicoba adalah <strong>Vigenere Cipher</strong>. Pada challenge ini, key <code class="language-plaintext highlighter-rouge">ARKANA</code> berhasil digunakan untuk mendekripsi pesan dan mendapatkan flag.</p>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+
+<div class="post-nav">
+  <span>
+    
+      <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
+      <a href="/Main-Blog_0xUCL/2026/06/10/konfigurasi-terenkripsi.html">
+        W1-A3 Konfigurasi Terenkripsi
+      </a>
+    
+  </span>
+  <span>
+    
+      Next post <i class="icon fa-solid fa-angle-right"></i><br>
+      <a href="/Main-Blog_0xUCL/2026/06/10/lalu-lintas-jaringan.html">
+        W1-E2 Lalu Lintas Jaringan
+      </a>
+    
+  </span>
+</div>
+  </section>
+
+
+    </main>
+    
+
+<footer class="background site-footer" data-dark="true" data-size="wide">
+  <div class="footer-brand">
+    <strong>OxUCL</strong>
+    <span>Unsri Cyber Lab</span>
+  </div>
+
+  <div>
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="mailto:oxucl@example.com" data-tooltip="Email" data-style="bare" aria-label="Email">
+      <i class="icon fa-solid fa-envelope"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://github.com/oxucl" data-tooltip="GitHub" data-style="bare" aria-label="GitHub">
+      <i class="icon fa-brands fa-github"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://instagram.com/oxucl" data-tooltip="Instagram" data-style="bare" aria-label="Instagram">
+      <i class="icon fa-brands fa-instagram"></i>
+      
+    </a>
+  </div>
+
+
+    
+  </div>
+
+  <div>
+    © 2026 OxUCL.
+    Dokumentasi CTF, riset, dan pembelajaran cyber security.
+  </div>
+
+  <input type="checkbox" class="dark-toggle" data-tooltip="Dark mode" aria-label="toggle dark mode" checked oninput="onDarkToggleChange(event)">
+</footer>
+
+  </body>
+</html>

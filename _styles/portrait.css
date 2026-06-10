@@ -1,0 +1,94 @@
+.portrait-wrapper {
+  display: contents;
+}
+
+.portrait {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+  width: 190px;
+  max-width: calc(100% - 20px - 20px);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--rounded);
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+}
+
+.portrait[data-style=small] {
+  width: 120px;
+}
+
+.portrait[data-style=tiny] {
+  flex-direction: row;
+  gap: 15px;
+  width: unset;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+}
+
+.portrait .icon {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  aspect-ratio: 1/1;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--primary);
+  box-shadow: 0 0 20px var(--glow);
+}
+
+.portrait[data-style=small] .icon {
+  right: 8px;
+  top: 8px;
+}
+
+.portrait[data-style=tiny] .icon {
+  display: none;
+}
+
+.portrait-image {
+  width: 100%;
+  margin-bottom: 20px;
+  aspect-ratio: 1/1;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 0 24px var(--glow);
+}
+
+.portrait[data-style=tiny] .portrait-image {
+  width: 46px;
+  margin: 0;
+  border-radius: 999px;
+}
+
+.portrait-name {
+  font-family: var(--heading);
+  font-weight: var(--bold);
+}
+
+.portrait-description,
+.portrait-affiliation {
+  color: var(--gray);
+}
+
+.portrait[data-style=tiny] .portrait-description,
+.portrait[data-style=tiny] .portrait-affiliation {
+  display: none;
+}
+
+/*# sourceMappingURL=portrait.css.map */

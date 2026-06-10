@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="id" data-dark="true">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--
+  put your analytics (e.g. Google Analytics) tracking code here
+-->
+
+  <!--
+  put your search engine verification (e.g. Google Search Console) tag here
+-->
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>W1-A1 Pesan Tersembunyi | OxUCL</title>
+
+<link rel="icon" href="/Main-Blog_0xUCL/images/icon.png">
+
+<meta name="title" content="W1-A1 Pesan Tersembunyi">
+<meta name="description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
+
+<meta property="og:title" content="W1-A1 Pesan Tersembunyi">
+<meta property="og:site_title" content="OxUCL">
+<meta property="og:description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
+<meta property="og:url" content="https://0xucl.github.io/Main-Blog_0xUCL">
+<meta property="og:image" content="/Main-Blog_0xUCL/images/share.jpg">
+<meta property="og:locale" content="en_US">
+
+<meta property="twitter:title" content="W1-A1 Pesan Tersembunyi">
+<meta property="twitter:description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
+<meta property="twitter:url" content="https://0xucl.github.io/Main-Blog_0xUCL">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="/Main-Blog_0xUCL/images/share.jpg">
+
+
+  <meta name="author" content="azizul-manal-gaumalanga">
+  <meta property="og:type" content="article">
+  <meta property="og:updated_time" content="2026-06-10T11:17:13+00:00">
+  <meta property="article:published_time" content="2026-06-10T00:00:00+00:00">
+  <meta property="article:modified_time" content="2026-06-10T11:17:13+00:00">
+  <meta name="revised" content="2026-06-10T11:17:13+00:00">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "BlogPosting",
+      "author": { "@type": "Person", "name": "W1-A1 Pesan Tersembunyi" },
+      "datePublished": "2026-06-10T00:00:00+00:00",
+      "dateModified": "2026-06-10T11:17:13+00:00",
+    
+    "name": "W1-A1 Pesan Tersembunyi",
+    "description": "Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.",
+    "headline": "W1-A1 Pesan Tersembunyi",
+    "publisher": {
+      "@type": "Organization",
+      "logo": { "@type": "ImageObject", "url": "/Main-Blog_0xUCL/images/icon.png" }
+    },
+    "url": "https://0xucl.github.io/Main-Blog_0xUCL"
+  }
+</script>
+
+<link rel="alternate" type="application/rss+xml" href="https://0xucl.github.io/Main-Blog_0xUCL/feed.xml">
+
+  <!-- Google Fonts -->
+<!-- automatically get url from fonts used in theme file -->
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?display=swap&&family=Barlow:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700&amp;family=Roboto+Mono:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700" rel="stylesheet">
+
+<!-- Font Awesome icons (load asynchronously due to size) -->
+
+<link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet" media="none" onload="this.removeAttribute('media'); this.onload = null;">
+<noscript>
+  <link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet">
+</noscript>
+
+  <!-- third party styles -->
+<!-- https://stylishthemes.github.io/Syntax-Themes/pygments/ -->
+<link href="https://cdn.jsdelivr.net/gh/StylishThemes/Syntax-Themes/pygments/css-github/pygments-tomorrow-night-eighties.css" rel="stylesheet">
+
+<!-- include all sass in styles folder -->
+
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/-theme.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/alert.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/all.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/anchor.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/background.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/body.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/bold.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/button.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/card.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/checkbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/citation.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/code.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/cols.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/dark-toggle.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/details.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/feature.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/figure.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/float.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/font.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/footer.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/form.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/grid.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/header.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/heading.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/highlight.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/icon.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/image.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/link.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/list.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/main.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/member.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/oxucl.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/paragraph.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/portrait.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/post-excerpt.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/post-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/post-nav.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/quote.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/rule.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/search-box.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/search-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/section.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/table.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/tags.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/textbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/tooltip.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/util.css" rel="stylesheet">
+  
+
+
+<!-- include all css in styles folder -->
+
+
+
+  <!-- third party scripts -->
+<script src="https://unpkg.com/@popperjs/core@2" defer></script>
+<script src="https://unpkg.com/tippy.js@6" defer></script>
+<script src="https://unpkg.com/mark.js@8" defer></script>
+
+<!-- include all js in scripts folder -->
+
+
+  <script src="/Main-Blog_0xUCL/_scripts/anchors.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/dark-mode.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/fetch-tags.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/search.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/site-search.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/table-wrap.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/tooltip.js"></script>
+
+
+</head>
+
+  <body>
+    
+
+
+
+
+
+
+
+<header class="background site-header" data-dark="true">
+  <a href="/Main-Blog_0xUCL/" class="home">
+    
+      <span class="logo">
+        
+          <img src="/Main-Blog_0xUCL/images/logo.jpg" alt="OxUCL logo">
+        
+      </span>
+    
+    
+      <span class="title-text" data-tooltip="Home">
+        
+          <span class="title">OxUCL</span>
+        
+        
+          <span class="subtitle">Unsri Cyber Lab</span>
+        
+      </span>
+    
+  </a>
+
+  <input class="nav-toggle" type="checkbox" aria-label="show/hide nav">
+
+  <nav>
+    
+    
+      
+        <a href="/Main-Blog_0xUCL/" data-tooltip="Beranda OxUCL">
+          Home
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/profil/" data-tooltip="Profil komunitas OxUCL">
+          Profil
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/writeups/" data-tooltip="Arsip write-up CTF">
+          Write Up
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/kategori/" data-tooltip="Kategori soal CTF">
+          Kategori
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/team/" data-tooltip="Member dan kontributor">
+          Team
+        </a>
+      
+    
+  </nav>
+</header>
+
+    <main>
+      <!--
+  modify main content of page:
+  - add section breaks
+  - attach section properties
+  - filter out blank sections
+-->
+
+
+
+
+
+
+  
+  
+  
+
+  <section class="background" data-size="1" style="--image: url('/Main-Blog_0xUCL/images/oxucl-logo.jpg')">
+    <!--
+  <background>images/oxucl-logo.jpg</background>
+  <dark></dark>
+  <size>1</size>
+-->
+
+
+<h1 class="center">W1-A1 Pesan Tersembunyi</h1>
+
+<div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/Main-Blog_0xUCL/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/Main-Blog_0xUCL/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/Main-Blog_0xUCL/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/Main-Blog_0xUCL/writeups?search=%22tag:%20crypto%22" class="tag" data-tooltip='Show items with the tag "crypto"'>
+        crypto
+      </a>
+    
+      <a href="/Main-Blog_0xUCL/writeups?search=%22tag:%20puzzle%22" class="tag" data-tooltip='Show items with the tag "puzzle"'>
+        puzzle
+      </a>
+    
+      <a href="/Main-Blog_0xUCL/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+
+<h2 id="detail-soal">Detail Soal</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nama Challenge</td>
+      <td>W1-A1 Pesan Tersembunyi</td>
+    </tr>
+    <tr>
+      <td>Kategori</td>
+      <td>Crypto &amp; Puzzle</td>
+    </tr>
+    <tr>
+      <td>Event</td>
+      <td>ZERO DAY Mini Games 2026</td>
+    </tr>
+    <tr>
+      <td>Poin</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>Difficulty</td>
+      <td>Easy</td>
+    </tr>
+    <tr>
+      <td>File</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">ANALYST_NOTE.txt</code> <code class="language-plaintext highlighter-rouge">ENCODE_MEMO.txt</code> <code class="language-plaintext highlighter-rouge">SERVER_LOG.txt</code>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/images/wu/pesan-1.png" alt=""></p>
+
+<h2 id="deskripsi-singkat">Deskripsi Singkat</h2>
+
+<p>Challange ini termasuk ke dalam kategori crypto dan puzzle, berdasarkan instruksi yang diberikan, peserta diminta untuk membuka file yang disediakan dan membaca isinya. Catatan pada soal memberikan petunjuk bahwa data mengandung pola.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Data yang tampak acak selalu menyimpan pola - tugas analis adalah menemukannya."
+</code></pre></div></div>
+
+<p><img src="/images/wu/pesan-2.png" alt=""></p>
+
+<h2 id="analisis-awal">Analisis Awal</h2>
+
+<p>Pada challenge ini terdapat tiga file yang diberikan, yaitu <code class="language-plaintext highlighter-rouge">ANALYST_NOTE.txt</code>, <code class="language-plaintext highlighter-rouge">ENCODE_MEMO.txt</code>, dan <code class="language-plaintext highlighter-rouge">SERVER_LOG.txt</code>.
+Langkah pertama yang saya lakukan adalah membaca dan menganalisis masing-masing file untuk mencari petunjuk awal, hal ini sesuai dengan catatan pada challenge.
+File <code class="language-plaintext highlighter-rouge">ANALYST_NOTE.txt</code> berfungsi sebagai petunjuk utama. Dari catatan tersebut, saya memahami bahwa data yang dicari telah disamarkan dengan menggunakan dua lapisan encoding, dan target utama pemeriksaan adalah file <code class="language-plaintext highlighter-rouge">ENCODE_MEMO.txt</code>.</p>
+
+<p>File <code class="language-plaintext highlighter-rouge">ENCODE_MEMO.txt</code> berisi:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WlJaQiBWQUdSRUFOWSDigJQgRU5VTkZWTgpYcmNucW4gIDogR3Z6IFpuYW53cnpyYSBDRyBBaGZuYWduZW4gUXZ0dmdueQpRbmV2ICAgIDogUXJjbmVncnpyYSBYcm56bmFuYSBWYXNiZXpuZnYKQ3JldnVueSA6IFZhZnZxcmEgWHJvYnBiZW5hIFFuZ24g4oCUIEd2YXFueCBZbmF3aGcgRnJ0cmVuCgpDbnFuIGduYXR0bnkgMTUgWnJ2IDIwMjYsIGZ2ZmdyeiB4bnp2IHpyYXFyZ3J4ZnYgbnhndml2Z25mIGd2cW54IGZudSBsbmF0CnpyYXRueHZvbmd4bmEgeHJvYnBiZW5hIHFuZ24gcW5ldiBmcmVpcmUgY2VicWh4ZnYuIENyeW54aCBxdnFodG4genJhdHRoYW54bmEKbnluZyBiZ2J6bmd2ZiBoYWdoeCB6cmF0cnhmZ2VueCBxbmduIHhiYXN2dGhlbmZ2IGZyYWZ2Z3ZzIHFuZXYgcXZlcnhnYmV2IGxuYXQKZnJ1bmVoZmFsbiBxdm9uZ25mdiBueGZyZmFsbi4KCk9yZXFuZm5leG5hIG5hbnl2ZnZmIHlidCBuam55LCBxdmdyemh4bmEgb251am4gZnJ3aHp5bnUgc3Z5ciB4YmFzdnRoZW5mdiBncnludQpxdnJ4ZnN2eWdlbmZ2LiBDcnlueGggcXZjcmV4dmVueG5hIGdyeW51IHpyYWxuem5leG5hIHFuZ24gZ3JlZnJvaGcgenJhdHRoYW54bmEKZ3J4YXZ4IHJhcGJxdmF0IGZyb3J5aHogenJhdHZldnp4bmFhbG4geHIgZnJlaXJlIHJ4ZmdyZWFueS4gVmFpcmZndnRuZnYgeXJvdnUKeW5hd2hnIHpuZnZ1IG9yZXluYXRmaGF0IG9yZWZuem4gZ3Z6IFBGVkVHLgoKWGJxciBxbmVoZW5nIGxuYXQgcXZncmduY3huYTogc3ludHtxMGhveTNfeTRsM2VfejN6MF9xM3AwcTNxfS4gWGJxciB2YXYgdW5hbG4gcXZjcmVoYWdoeHhuYSBvbnR2Cmd2eiB2YWZ2cXJhIHFuYSB1bmVoZiBxdndudG4geHJlbnVuZnZubmFhbG4uIFduYXRuYSBxdmZyb25leG5hIHpyeW55aHYgeG5hbnkKeGJ6aGF2eG5mdiBsbmF0IGd2cW54IG56bmEgZ25hY24gcmF4ZXZjZnYgcmFxLWdiLXJhcS4KCkZydHJlbiB5bmNiZXhuYSBncnpobmEgZ256b251bmEgeHJjbnFuIHhiYmVxdmFuZ2JlIHZhZnZxcmEuIEVuY25nIGZ2Z2huZnYgbnhuYQpxdmZyeXJhdHRuZW54bmEgY25xbiBjaHhoeSAxNC4wMCBKVk8gdW5ldiB2YXYuIFhydW5xdmVuYSBmcnloZWh1IG5hdHRiZ24gZ3Z6Cmpud3ZvIGhhZ2h4IHpyem9udW5mIHluYXR4bnUgenZndnRuZnYgcW5hIGVyZmNiYWYgdmFmdnFyYSB5cm92dSB5bmF3aGcuCgpVYmV6bmcgeG56diwKUXZpdmZ2IFhybnpuYW5hIEZ2b3JlCkNHIEFoZm5hZ25lbiBRdnR2Z255Cg==
+</code></pre></div></div>
+
+<p>String ini diakhiri dengan karakter <code class="language-plaintext highlighter-rouge">==</code> yang merupakan padding khas dari encoding base64. Hal ini menjadi petunjuk kuat bahwa lapisan pertama encoding adalah base64.</p>
+
+<p>Hasil decode-nya adalah:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ZRZB VAGREANY — ENUNFVN
+Xrcnqn  : GvzАнанwrzra CG Ahfnagnen Qvtvgny
+Qnev    : Qrcnegrzra Xrnznana Vasbeznfv
+Crevuny : Vafvqra Xrobpbena Qngn — Gvaqnx Ynawhg Frtren
+...
+</code></pre></div></div>
+
+<p>Output decode menunjukan teks masih tidak terbaca. Pola ini mengindikasikan encoding <strong>ROT13</strong> yang dapat diidentifikasi dari dua ciri:</p>
+<ul>
+  <li>Kata-kata pendek seperti <code class="language-plaintext highlighter-rouge">gvz</code> kemungkinan besar <code class="language-plaintext highlighter-rouge">tim</code> (pergeseran 13 huruf)</li>
+  <li>Struktur kalimat masih terlihat (spasi, tanda baca utuh), menandakan ini encoding substitusi, bukan enkripsi acak</li>
+</ul>
+
+<p>File <code class="language-plaintext highlighter-rouge">SERVER_LOG.txt</code> berisi log aktivitas server. Setelah diperiksa, file ini tidak mengandung data relevan untuk menemukan flag dan berfungsi sebagai <em>red herring</em> — elemen pengecoh yang umum ditemukan dalam challenge CTF.</p>
+
+<p>Berdasarkan seluruh hasil analisis, flag bisa didapatkan dengan mendecode isi dari <code class="language-plaintext highlighter-rouge">ENCODE_MEMO.txt</code> dengan Base64 kemudian ROT13.</p>
+
+<h2 id="langkah-penyelesaian">Langkah Penyelesaian</h2>
+
+<p>Tool yang digunakan adalah CyberChef. Tool ini dipilih karena kemampuannya melakukan operasi decode secara bersamaan, tanpa menulis skrip.</p>
+
+<ol>
+  <li>Paste seluruh isi dari file <code class="language-plaintext highlighter-rouge">ENCODE_MEMO.txt</code> ke kolom input</li>
+  <li>Pada kolom recipe, tambahkan dua operasi berurutan:
+    <ul>
+      <li>Pertama: From Base64</li>
+      <li>Kedua: ROT13</li>
+    </ul>
+  </li>
+  <li>Output final akan muncul otomatis di kolom output</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MEMO INTERNAL — RAHASIA
+Kepada  : Tim Manajemen PT Nusantara Digital
+Dari    : Departemen Keamanan Informasi
+Perihal : Insiden Kebocoran Data — Tindak Lanjut Segera
+
+Pada tanggal 15 Mei 2026, sistem kami mendeteksi aktivitas tidak sah yang
+mengakibatkan kebocoran data dari server produksi. Pelaku diduga menggunakan
+alat otomatis untuk mengekstrak data konfigurasi sensitif dari direktori yang
+seharusnya dibatasi aksesnya.
+
+...
+
+Kode darurat yang ditetapkan: flag{d0ubl3_l4y3r_m3m0_d3c0d3d}. Kode ini hanya diperuntukkan bagi
+tim insiden dan harus dijaga kerahasiaannya.
+</code></pre></div></div>
+
+<p>Flag ditemukan di paragraf 3, tertulis sebagai kode darurat.</p>
+
+<p><img src="/images/wu/pesan-3.png" alt=""></p>
+
+<h2 id="flag">Flag</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flag{d0ubl3_l4y3r_m3m0_d3c0d3d}
+</code></pre></div></div>
+
+<h2 id="kesimpulan--hal-yang-dipelajari">Kesimpulan / Hal yang Dipelajari</h2>
+
+<p>Saya mempelajari banyak hal dari tantangan ini. Saya belajar tentang encoding paling umum di CTF yaitu Base64 dan ROT13. Kedua encoding ini ternyata mudah dikenali secara visual tanpa bantuan tool: Base64 bisa dikenali dengan padding <code class="language-plaintext highlighter-rouge">==</code> atau <code class="language-plaintext highlighter-rouge">=</code> di akhir string, sedangkan ROT13 bisa dikenali dengan masih terjaganya struktur kalimat.</p>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+
+<div class="post-nav">
+  <span>
+    
+      <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
+      <a href="/Main-Blog_0xUCL/2026/06/10/perusahaan-bayangan.html">
+        W1-B3 Perusahaan Bayangan
+      </a>
+    
+  </span>
+  <span>
+    
+      Next post <i class="icon fa-solid fa-angle-right"></i><br>
+      <a href="/Main-Blog_0xUCL/2026/06/10/portal-pemantauan-server.html">
+        W1-C1 Portal Pemantauan Server
+      </a>
+    
+  </span>
+</div>
+  </section>
+
+
+    </main>
+    
+
+<footer class="background site-footer" data-dark="true" data-size="wide">
+  <div class="footer-brand">
+    <strong>OxUCL</strong>
+    <span>Unsri Cyber Lab</span>
+  </div>
+
+  <div>
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="mailto:oxucl@example.com" data-tooltip="Email" data-style="bare" aria-label="Email">
+      <i class="icon fa-solid fa-envelope"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://github.com/oxucl" data-tooltip="GitHub" data-style="bare" aria-label="GitHub">
+      <i class="icon fa-brands fa-github"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://instagram.com/oxucl" data-tooltip="Instagram" data-style="bare" aria-label="Instagram">
+      <i class="icon fa-brands fa-instagram"></i>
+      
+    </a>
+  </div>
+
+
+    
+  </div>
+
+  <div>
+    © 2026 OxUCL.
+    Dokumentasi CTF, riset, dan pembelajaran cyber security.
+  </div>
+
+  <input type="checkbox" class="dark-toggle" data-tooltip="Dark mode" aria-label="toggle dark mode" checked oninput="onDarkToggleChange(event)">
+</footer>
+
+  </body>
+</html>

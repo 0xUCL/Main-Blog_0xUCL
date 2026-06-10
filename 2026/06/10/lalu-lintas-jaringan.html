@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="id" data-dark="true">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--
+  put your analytics (e.g. Google Analytics) tracking code here
+-->
+
+  <!--
+  put your search engine verification (e.g. Google Search Console) tag here
+-->
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>W1-E2 Lalu Lintas Jaringan | OxUCL</title>
+
+<link rel="icon" href="/Main-Blog_0xUCL/images/icon.png">
+
+<meta name="title" content="W1-E2 Lalu Lintas Jaringan">
+<meta name="description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
+
+<meta property="og:title" content="W1-E2 Lalu Lintas Jaringan">
+<meta property="og:site_title" content="OxUCL">
+<meta property="og:description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
+<meta property="og:url" content="https://0xucl.github.io/Main-Blog_0xUCL">
+<meta property="og:image" content="/Main-Blog_0xUCL/images/share.jpg">
+<meta property="og:locale" content="en_US">
+
+<meta property="twitter:title" content="W1-E2 Lalu Lintas Jaringan">
+<meta property="twitter:description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
+<meta property="twitter:url" content="https://0xucl.github.io/Main-Blog_0xUCL">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="/Main-Blog_0xUCL/images/share.jpg">
+
+
+  <meta name="author" content="azizul-manal-gaumalanga">
+  <meta property="og:type" content="article">
+  <meta property="og:updated_time" content="2026-06-10T11:17:13+00:00">
+  <meta property="article:published_time" content="2026-06-10T00:00:00+00:00">
+  <meta property="article:modified_time" content="2026-06-10T11:17:13+00:00">
+  <meta name="revised" content="2026-06-10T11:17:13+00:00">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "BlogPosting",
+      "author": { "@type": "Person", "name": "W1-E2 Lalu Lintas Jaringan" },
+      "datePublished": "2026-06-10T00:00:00+00:00",
+      "dateModified": "2026-06-10T11:17:13+00:00",
+    
+    "name": "W1-E2 Lalu Lintas Jaringan",
+    "description": "Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.",
+    "headline": "W1-E2 Lalu Lintas Jaringan",
+    "publisher": {
+      "@type": "Organization",
+      "logo": { "@type": "ImageObject", "url": "/Main-Blog_0xUCL/images/icon.png" }
+    },
+    "url": "https://0xucl.github.io/Main-Blog_0xUCL"
+  }
+</script>
+
+<link rel="alternate" type="application/rss+xml" href="https://0xucl.github.io/Main-Blog_0xUCL/feed.xml">
+
+  <!-- Google Fonts -->
+<!-- automatically get url from fonts used in theme file -->
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?display=swap&&family=Barlow:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700&amp;family=Roboto+Mono:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700" rel="stylesheet">
+
+<!-- Font Awesome icons (load asynchronously due to size) -->
+
+<link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet" media="none" onload="this.removeAttribute('media'); this.onload = null;">
+<noscript>
+  <link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet">
+</noscript>
+
+  <!-- third party styles -->
+<!-- https://stylishthemes.github.io/Syntax-Themes/pygments/ -->
+<link href="https://cdn.jsdelivr.net/gh/StylishThemes/Syntax-Themes/pygments/css-github/pygments-tomorrow-night-eighties.css" rel="stylesheet">
+
+<!-- include all sass in styles folder -->
+
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/-theme.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/alert.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/all.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/anchor.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/background.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/body.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/bold.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/button.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/card.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/checkbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/citation.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/code.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/cols.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/dark-toggle.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/details.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/feature.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/figure.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/float.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/font.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/footer.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/form.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/grid.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/header.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/heading.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/highlight.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/icon.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/image.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/link.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/list.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/main.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/member.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/oxucl.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/paragraph.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/portrait.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/post-excerpt.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/post-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/post-nav.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/quote.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/rule.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/search-box.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/search-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/section.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/table.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/tags.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/textbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/tooltip.css" rel="stylesheet">
+  
+
+  
+    <link href="/Main-Blog_0xUCL/_styles/util.css" rel="stylesheet">
+  
+
+
+<!-- include all css in styles folder -->
+
+
+
+  <!-- third party scripts -->
+<script src="https://unpkg.com/@popperjs/core@2" defer></script>
+<script src="https://unpkg.com/tippy.js@6" defer></script>
+<script src="https://unpkg.com/mark.js@8" defer></script>
+
+<!-- include all js in scripts folder -->
+
+
+  <script src="/Main-Blog_0xUCL/_scripts/anchors.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/dark-mode.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/fetch-tags.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/search.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/site-search.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/table-wrap.js"></script>
+
+  <script src="/Main-Blog_0xUCL/_scripts/tooltip.js"></script>
+
+
+</head>
+
+  <body>
+    
+
+
+
+
+
+
+
+<header class="background site-header" data-dark="true">
+  <a href="/Main-Blog_0xUCL/" class="home">
+    
+      <span class="logo">
+        
+          <img src="/Main-Blog_0xUCL/images/logo.jpg" alt="OxUCL logo">
+        
+      </span>
+    
+    
+      <span class="title-text" data-tooltip="Home">
+        
+          <span class="title">OxUCL</span>
+        
+        
+          <span class="subtitle">Unsri Cyber Lab</span>
+        
+      </span>
+    
+  </a>
+
+  <input class="nav-toggle" type="checkbox" aria-label="show/hide nav">
+
+  <nav>
+    
+    
+      
+        <a href="/Main-Blog_0xUCL/" data-tooltip="Beranda OxUCL">
+          Home
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/profil/" data-tooltip="Profil komunitas OxUCL">
+          Profil
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/writeups/" data-tooltip="Arsip write-up CTF">
+          Write Up
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/kategori/" data-tooltip="Kategori soal CTF">
+          Kategori
+        </a>
+      
+    
+      
+        <a href="/Main-Blog_0xUCL/team/" data-tooltip="Member dan kontributor">
+          Team
+        </a>
+      
+    
+  </nav>
+</header>
+
+    <main>
+      <!--
+  modify main content of page:
+  - add section breaks
+  - attach section properties
+  - filter out blank sections
+-->
+
+
+
+
+
+
+  
+  
+  
+
+  <section class="background" data-size="1" style="--image: url('/Main-Blog_0xUCL/images/oxucl-logo.jpg')">
+    <!--
+  <background>images/oxucl-logo.jpg</background>
+  <dark></dark>
+  <size>1</size>
+-->
+
+
+<h1 class="center">W1-E2 Lalu Lintas Jaringan</h1>
+
+<div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/Main-Blog_0xUCL/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/Main-Blog_0xUCL/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/Main-Blog_0xUCL/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/Main-Blog_0xUCL/writeups?search=%22tag:%20forensics%22" class="tag" data-tooltip='Show items with the tag "forensics"'>
+        forensics
+      </a>
+    
+      <a href="/Main-Blog_0xUCL/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+
+<h2 id="detail-soal">Detail Soal</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nama Challenge</td>
+      <td>W1-E2: Lalu Lintas Jaringan</td>
+    </tr>
+    <tr>
+      <td>Kategori</td>
+      <td>Digital Forensics</td>
+    </tr>
+    <tr>
+      <td>Event</td>
+      <td>ZERO DAY Mini Games 2026</td>
+    </tr>
+    <tr>
+      <td>File</td>
+      <td><code class="language-plaintext highlighter-rouge">traffic.pcap</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="deskripsi-singkat">Deskripsi Singkat</h2>
+
+<p>Pada challenge <strong>W1-E2: Lalu Lintas Jaringan</strong>, diberikan sebuah file capture bernama <code class="language-plaintext highlighter-rouge">traffic.pcap</code>. File ini berisi rekaman lalu lintas jaringan dari workstation yang dicurigai melakukan komunikasi tidak sah dengan server eksternal. Tujuan dari challenge ini adalah menganalisis traffic tersebut dan menemukan data tersembunyi yang mengarah ke flag.</p>
+
+<h2 id="analisis-awal">Analisis Awal</h2>
+
+<p>Langkah pertama yang saya lakukan adalah membuka file <code class="language-plaintext highlighter-rouge">traffic.pcap</code> menggunakan Wireshark. Dari hasil pengamatan awal, terlihat bahwa traffic berisi beberapa komunikasi HTTP biasa, seperti akses ke website umum, request status API, request ping internal, dan komunikasi ke beberapa endpoint.</p>
+
+<p>Untuk mempercepat analisis, saya juga menggunakan perintah <code class="language-plaintext highlighter-rouge">strings</code> agar dapat melihat teks yang terbaca langsung dari file PCAP.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>strings traffic.pcap
+</code></pre></div></div>
+
+<p>Dari hasil tersebut terlihat beberapa request HTTP, salah satunya menuju host berikut:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>backend.siluman-tech.id
+</code></pre></div></div>
+
+<p>Host ini terlihat mencurigakan karena terdapat beberapa endpoint yang tidak umum, seperti:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/api/submit
+/session/refresh
+/api/c2/beacon
+/update/check
+</code></pre></div></div>
+
+<p>Selain itu, ditemukan juga beberapa data yang terlihat seperti Base64.</p>
+
+<h2 id="langkah-penyelesaian">Langkah Penyelesaian</h2>
+
+<p>Pada awalnya ditemukan request berikut:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /api/submit HTTP/1.1
+Host: backend.siluman-tech.id
+
+user_id=EMP3391&amp;action=check_in&amp;secret_token=c2VjcmV0XzRiOGYyYzlkMWE2ZTNmN2IwYzVkMmU4YTlmNGIxYzdl
+</code></pre></div></div>
+
+<p>Nilai <code class="language-plaintext highlighter-rouge">secret_token</code> tersebut terlihat seperti Base64, sehingga saya mencoba melakukan decode.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'c2VjcmV0XzRiOGYyYzlkMWE2ZTNmN2IwYzVkMmU4YTlmNGIxYzdl'</span> | <span class="nb">base64</span> <span class="nt">-d</span>
+</code></pre></div></div>
+
+<p>Hasilnya:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>secret_4b8f2c9d1a6e3f7b0c5d2e8a9f4b1c7e
+</code></pre></div></div>
+
+<p>Namun hasil tersebut bukan flag, melainkan hanya token atau petunjuk lain. Karena challenge menyebutkan adanya data yang disembunyikan dalam lalu lintas normal, saya melanjutkan analisis ke request lain yang terlihat lebih mencurigakan.</p>
+
+<p>Kemudian ditemukan komunikasi berikut:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /api/c2/beacon HTTP/1.1
+Host: backend.siluman-tech.id
+Content-Type: application/json
+X-Client-ID: SLM-EMP3391
+
+{"host":"WS-3391","os":"win10","ts":1748000000}
+</code></pre></div></div>
+
+<p>Endpoint <code class="language-plaintext highlighter-rouge">/api/c2/beacon</code> cukup mencurigakan karena istilah <strong>C2</strong> biasanya merujuk pada <strong>Command and Control</strong>, yaitu komunikasi antara client yang terinfeksi dengan server pengendali.</p>
+
+<p>Response dari server berisi data berikut:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+X-Request-ID: c2-20260528-9f3a
+
+{"status":"ok","task":"idle","ref":"ZmxhZ3twY2FwX2MyX3IzZl9iNHMzNjRfM3hmMWx9"}
+</code></pre></div></div>
+
+<p>Pada bagian response terdapat field <code class="language-plaintext highlighter-rouge">ref</code> yang berisi string Base64:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ZmxhZ3twY2FwX2MyX3IzZl9iNHMzNjRfM3hmMWx9
+</code></pre></div></div>
+
+<p>String tersebut kemudian saya decode menggunakan perintah:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'ZmxhZ3twY2FwX2MyX3IzZl9iNHMzNjRfM3hmMWx9'</span> | <span class="nb">base64</span> <span class="nt">-d</span>
+</code></pre></div></div>
+
+<p>Hasil decode-nya adalah:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flag{pcap_c2_r3f_b4s364_3xf1l}
+</code></pre></div></div>
+
+<p>Dari sini dapat disimpulkan bahwa flag disembunyikan pada response komunikasi C2 dalam field <code class="language-plaintext highlighter-rouge">ref</code>, lalu diencoding menggunakan Base64.</p>
+
+<h2 id="flag">Flag</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flag{pcap_c2_r3f_b4s364_3xf1l}
+</code></pre></div></div>
+
+<h2 id="kesimpulan--hal-yang-dipelajari">Kesimpulan / Hal yang Dipelajari</h2>
+
+<p>Pada challenge ini, flag tidak muncul secara langsung di tampilan traffic biasa. Data penting disamarkan dalam komunikasi HTTP yang terlihat normal, tepatnya pada response endpoint <code class="language-plaintext highlighter-rouge">/api/c2/beacon</code>. Dari challenge ini dipelajari bahwa dalam analisis PCAP, kita tidak hanya perlu melihat request yang terlihat mencurigakan, tetapi juga perlu memeriksa response server, parameter tersembunyi, header, serta data yang tampak seperti hasil encoding. Base64 sering digunakan untuk menyamarkan data agar tidak langsung terbaca.</p>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+
+<div class="post-nav">
+  <span>
+    
+      <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
+      <a href="/Main-Blog_0xUCL/2026/06/10/korespondensi-tersegel.html">
+        Korespondensi Tersegel
+      </a>
+    
+  </span>
+  <span>
+    
+      Next post <i class="icon fa-solid fa-angle-right"></i><br>
+      <a href="/Main-Blog_0xUCL/2026/06/10/manajer-berkas-internal.html">
+        W1-C2 Manajer Berkas Internal
+      </a>
+    
+  </span>
+</div>
+  </section>
+
+
+    </main>
+    
+
+<footer class="background site-footer" data-dark="true" data-size="wide">
+  <div class="footer-brand">
+    <strong>OxUCL</strong>
+    <span>Unsri Cyber Lab</span>
+  </div>
+
+  <div>
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="mailto:oxucl@example.com" data-tooltip="Email" data-style="bare" aria-label="Email">
+      <i class="icon fa-solid fa-envelope"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://github.com/oxucl" data-tooltip="GitHub" data-style="bare" aria-label="GitHub">
+      <i class="icon fa-brands fa-github"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://instagram.com/oxucl" data-tooltip="Instagram" data-style="bare" aria-label="Instagram">
+      <i class="icon fa-brands fa-instagram"></i>
+      
+    </a>
+  </div>
+
+
+    
+  </div>
+
+  <div>
+    © 2026 OxUCL.
+    Dokumentasi CTF, riset, dan pembelajaran cyber security.
+  </div>
+
+  <input type="checkbox" class="dark-toggle" data-tooltip="Dark mode" aria-label="toggle dark mode" checked oninput="onDarkToggleChange(event)">
+</footer>
+
+  </body>
+</html>
