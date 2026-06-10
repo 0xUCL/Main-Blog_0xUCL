@@ -2,9 +2,19 @@ section {
   padding: 44px max(44px, (100% - 1060px) / 2);
   transition: background var(--transition), color var(--transition);
 }
+@media (max-width: 750px) {
+  section {
+    padding: 44px max(20px, (100% - 1060px) / 2);
+  }
+}
 
 section[data-size=wide] {
   padding: 44px;
+}
+@media (max-width: 750px) {
+  section[data-size=wide] {
+    padding: 44px 20px;
+  }
 }
 
 section[data-size=full] {

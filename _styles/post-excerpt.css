@@ -70,6 +70,9 @@
     width: unset;
     height: 180px;
   }
+  .post-excerpt-text {
+    padding: 20px;
+  }
 }
 
 /*# sourceMappingURL=post-excerpt.css.map */
