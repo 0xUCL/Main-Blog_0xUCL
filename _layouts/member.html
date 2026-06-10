@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+{% assign type = site.data.types[page.role] %}
+
+<section class="member-detail">
+  <div class="member-detail-card">
+    {% include portrait.html lookup=page.slug %}
+
+    {% if page.links %}
+      <div class="member-socials">
+        {% for link in page.links %}
+          {% assign key = link[0] %}
+          {% assign value = link[1] %}
+          {% include button.html type=key link=value style="bare" %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="member-detail-content">
+    <span class="member-kicker">OxUCL Member Profile</span>
+
+    <h1>{{ page.name }}</h1>
+
+    <p class="member-meta">
+      {% if type %}
+        {{ type.description }}
+      {% else %}
+        {{ page.role }}
+      {% endif %}
+
+      {% if page.affiliation %}
+        · {{ page.affiliation }}
+      {% endif %}
+    </p>
+
+    <div class="member-bio">
+      {{ content }}
+    </div>
+  </div>
+</section>

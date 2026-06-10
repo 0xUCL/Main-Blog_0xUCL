@@ -1,0 +1,64 @@
+---
+---
+
+// colors
+[data-dark="false"] {
+  --primary: #f5a623;
+  --secondary: #5b523f;
+  --text: #141414;
+  --background: #f8f8f5;
+  --background-alt: #f0f0ec;
+  --surface: #ffffff;
+  --surface-2: #f8f7f1;
+  --line: #d8cba8;
+  --light-gray: #ded7c8;
+  --gray: #757575;
+  --dark-gray: #333333;
+  --overlay: #00000018;
+  --glow: #f5a62344;
+  --silver: #707782;
+}
+[data-dark="true"] {
+  --primary: #ffad2f;
+  --secondary: #c5cbd3;
+  --text: #f6f7fb;
+  --background: #050608;
+  --background-alt: #0a0d12;
+  --surface: #0e1218;
+  --surface-2: #141922;
+  --line: #2c3542;
+  --light-gray: #27303b;
+  --gray: #8d95a3;
+  --dark-gray: #cbd1dc;
+  --overlay: #00000075;
+  --glow: #ffad2f55;
+  --silver: #aeb6c2;
+}
+
+:root {
+  // font families
+  --title: "Barlow", sans-serif;
+  --heading: "Barlow", sans-serif;
+  --body: "Barlow", sans-serif;
+  --code: "Roboto Mono", monospace;
+
+  // font sizes
+  --large: 1.2rem;
+  --xl: 1.45rem;
+  --xxl: clamp(2.2rem, 7vw, 5.2rem);
+
+  // font weights
+  --thin: 200;
+  --regular: 400;
+  --semi-bold: 600;
+  --bold: 700;
+
+  // text line spacing
+  --spacing: 1.9;
+  --compact: 1.55;
+
+  // effects
+  --rounded: 16px;
+  --shadow: 0 16px 50px var(--overlay);
+  --transition: 0.2s ease;
+}

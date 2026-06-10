@@ -1,0 +1,14 @@
+# Jekyll generated
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Docker generated
+.sass-cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env

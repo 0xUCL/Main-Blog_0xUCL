@@ -1,0 +1,21 @@
+name: on-pull-request
+run-name: on pull request activity
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  # DIHAPUS: update-citations → tidak pakai citation system
+
+  build-preview:
+    # langsung build preview tanpa update citations
+    uses: ./.github/workflows/build-preview.yaml

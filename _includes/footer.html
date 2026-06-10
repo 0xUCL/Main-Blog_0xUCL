@@ -1,0 +1,36 @@
+{% assign dark = page.footer-dark | is_nil: site.footer-dark | is_nil: true %}
+
+<footer
+  class="background site-footer"
+  {% if dark == true or dark == false %}
+    data-dark="{{ dark }}"
+  {% endif %}
+  data-size="wide"
+>
+  <div class="footer-brand">
+    <strong>OxUCL</strong>
+    <span>Unsri Cyber Lab</span>
+  </div>
+
+  <div>
+    {% for link in site.links %}
+      {% assign key = link[0] %}
+      {% assign value = link[1] %}
+      {% include button.html type=key text="" link=value style="bare" %}
+    {% endfor %}
+  </div>
+
+  <div>
+    &copy; {{ site.time | date: "%Y" }} {{ site.title }}.
+    Dokumentasi CTF, riset, dan pembelajaran cyber security.
+  </div>
+
+  <input
+    type="checkbox"
+    class="dark-toggle"
+    data-tooltip="Dark mode"
+    aria-label="toggle dark mode"
+    checked
+    oninput="onDarkToggleChange(event)"
+  >
+</footer>

@@ -1,0 +1,38 @@
+---
+---
+
+.background {
+  position: relative;
+  background: var(--background);
+  color: var(--text);
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* CSS-only cyber visual layer. Tidak memakai background image besar. */
+.background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 15% 10%, var(--glow), transparent 28%),
+    radial-gradient(circle at 85% 0%, #ffffff10, transparent 24%),
+    linear-gradient(135deg, transparent 0 48%, #ffffff08 48% 50%, transparent 50% 100%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+  opacity: 0.16;
+  pointer-events: none;
+}

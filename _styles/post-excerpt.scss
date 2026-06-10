@@ -1,0 +1,80 @@
+---
+---
+
+$thumb-width: 280px;
+$wrap: 800px;
+
+.post-excerpt-container {
+  container-type: inline-size;
+}
+
+.post-excerpt {
+  display: flex;
+  margin: 20px 0;
+  border: 1px solid var(--line);
+  border-radius: var(--rounded);
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.post-excerpt-image {
+  position: relative;
+  width: $thumb-width;
+  flex-shrink: 0;
+  background-color: var(--surface-2);
+}
+
+.post-excerpt-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-excerpt-text {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+  padding: 24px 30px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.post-excerpt-text > * {
+  margin: 0 !important;
+}
+
+.post-excerpt-text > a:first-child {
+  width: 100%;
+  color: var(--primary);
+  font-size: 1.15rem;
+  font-weight: var(--bold);
+  text-decoration: none;
+}
+
+.post-excerpt-text > a:first-child:hover {
+  color: var(--text);
+}
+
+.post-excerpt-text > div {
+  justify-content: flex-start;
+}
+
+.post-excerpt-text > p {
+  width: 100%;
+  color: var(--dark-gray);
+  line-height: 1.6;
+}
+
+@container (max-width: #{$wrap}) {
+  .post-excerpt {
+    flex-direction: column;
+  }
+
+  .post-excerpt-image {
+    width: unset;
+    height: 180px;
+  }
+}

@@ -1,0 +1,66 @@
+# site properties and page defaults
+title: OxUCL
+subtitle: Unsri Cyber Lab
+description: Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.
+header:
+footer:
+logo-text: true
+show-title: true
+show-subtitle: true
+proofer: false
+
+# site social media and other links
+links:
+  email: oxucl@example.com
+  github: oxucl
+  instagram: oxucl
+
+### jekyll settings
+
+# front matter defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      type: "members"
+    values:
+      layout: member
+  - scope:
+      type: "posts"
+    values:
+      layout: post
+
+collections:
+  members:
+    output: true
+  posts:
+    output: true
+
+plugins:
+  - jekyll-spaceship
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jekyll-feed
+  - jekyll-last-modified-at
+
+highlighter: rouge
+theme: null
+
+sass:
+  sass_dir: _styles
+
+include:
+  - _styles
+  - _scripts
+
+exclude:
+  - README.md
+  - LICENSE.md
+  - CITATION.cff
+
+jekyll-spaceship:
+  mathjax-processor:
+    src:
+      - https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js

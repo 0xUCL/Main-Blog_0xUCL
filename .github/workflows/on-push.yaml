@@ -1,0 +1,21 @@
+name: on-push
+run-name: on push to main
+
+on:
+  push:
+    branches:
+      - main
+
+  # run if user manually requests it
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  # DIHAPUS: update-citations → tidak pakai citation system
+
+  build-site:
+    # langsung build tanpa perlu update citations dulu
+    uses: ./.github/workflows/build-site.yaml
