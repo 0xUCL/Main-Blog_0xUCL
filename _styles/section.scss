@@ -3,14 +3,24 @@
 
 $page: 1060px;
 $padding: 44px;
+$padding-mobile: 20px;
+$mobile: 750px;
 
 section {
   padding: $padding max($padding, calc((100% - $page) / 2));
   transition: background var(--transition), color var(--transition);
+
+  @media (max-width: $mobile) {
+    padding: $padding max($padding-mobile, calc((100% - $page) / 2));
+  }
 }
 
 section[data-size="wide"] {
   padding: $padding;
+
+  @media (max-width: $mobile) {
+    padding: $padding $padding-mobile;
+  }
 }
 
 section[data-size="full"] {
