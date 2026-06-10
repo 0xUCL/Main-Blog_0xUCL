@@ -83,15 +83,29 @@ git push origin main
 
 ## 💻 Menjalankan Website Secara Lokal (Untuk Testing)
 
-Jika kamu ingin melihat tampilan website di laptopmu sebelum di-push ke GitHub:
-1. Pastikan **Ruby** dan **Bundler** sudah terinstall.
-2. Buka terminal di folder project ini.
-3. Jalankan perintah instalasi (hanya dilakukan sekali):
+Jika kamu ingin melihat tampilan website di laptopmu sebelum di-push ke GitHub, ada dua cara yang bisa kamu gunakan:
+
+### Opsi 1: Menggunakan Docker (Direkomendasikan)
+Cara ini paling mudah dan aman karena kamu tidak perlu menginstall Ruby atau Bundler sama sekali. Yang penting **Docker** sudah terinstall di komputermu.
+
+1. Buka terminal di folder project ini.
+2. Jalankan script docker yang sudah disediakan:
+   ```bash
+   ./.docker/run.sh
+   ```
+   *(Script ini akan otomatis membuat image dan menjalankan container-nya)*
+3. Buka `http://localhost:4000` di browsermu.
+
+### Opsi 2: Menggunakan Ruby & Bundler Langsung
+Jika kamu tidak ingin menggunakan Docker, kamu harus memastikan **Ruby** dan **Bundler** sudah terinstall di komputermu.
+
+1. Buka terminal di folder project ini.
+2. Jalankan perintah instalasi dependencies (hanya dilakukan sekali):
    ```bash
    bundle install
    ```
-4. Jalankan server lokal:
+3. Jalankan server lokal:
    ```bash
    bundle exec jekyll serve
    ```
-5. Buka `http://localhost:4000` di browsermu.
+4. Buka `http://localhost:4000` di browsermu.
