@@ -31,12 +31,19 @@ defaults:
       type: "posts"
     values:
       layout: post
+  - scope:
+      type: "announcements"
+    values:
+      layout: announcement
 
 collections:
   members:
     output: true
   posts:
     output: true
+  announcements:
+    output: true
+    permalink: /pengumuman/:name/
 
 plugins:
   - jekyll-spaceship
@@ -47,6 +54,7 @@ plugins:
 
 highlighter: rouge
 theme: null
+future: true
 
 sass:
   sass_dir: _styles

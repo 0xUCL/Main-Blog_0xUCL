@@ -1,0 +1,39 @@
+{% assign announcement = include.announcement %}
+
+<a
+  class="announcement-card{% if include.featured %} announcement-card-featured{% endif %}"
+  href="{{ announcement.url | relative_url }}"
+  aria-label="Lihat detail {{ announcement.title | default: 'pengumuman' | regex_strip }}"
+>
+  <div class="announcement-card-top">
+    {% if announcement.category %}
+      <span class="announcement-badge announcement-badge-type">{{ announcement.category }}</span>
+    {% endif %}
+
+    {% if announcement.status %}
+      <span class="announcement-badge announcement-badge-status" data-status="{{ announcement.status | downcase | replace: ' ', '-' }}">{{ announcement.status }}</span>
+    {% endif %}
+  </div>
+
+  <h3>{{ announcement.title }}</h3>
+
+  {% if announcement.description %}
+    <p>{{ announcement.description }}</p>
+  {% endif %}
+
+  <div class="announcement-meta">
+    {% if announcement.date %}
+      <span><i class="fa-solid fa-calendar-days"></i>{{ announcement.date | date: "%d %B %Y" }}</span>
+    {% endif %}
+
+    {% if announcement.time %}
+      <span><i class="fa-solid fa-clock"></i>{{ announcement.time }}</span>
+    {% endif %}
+
+    {% if announcement.location %}
+      <span><i class="fa-solid fa-location-dot"></i>{{ announcement.location }}</span>
+    {% endif %}
+  </div>
+
+  <span class="announcement-read-more">Lihat Detail <i class="fa-solid fa-arrow-right"></i></span>
+</a>

@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<article class="announcement-detail">
+  <header class="announcement-detail-header">
+    <div class="announcement-card-top">
+      {% if page.category %}
+        <span class="announcement-badge announcement-badge-type">{{ page.category }}</span>
+      {% endif %}
+
+      {% if page.status %}
+        <span class="announcement-badge announcement-badge-status" data-status="{{ page.status | downcase | replace: ' ', '-' }}">{{ page.status }}</span>
+      {% endif %}
+    </div>
+
+    <h1>{{ page.title }}</h1>
+
+    {% if page.description %}
+      <p class="announcement-detail-description">{{ page.description }}</p>
+    {% endif %}
+
+    <div class="announcement-detail-meta">
+      {% if page.date %}
+        <span><i class="fa-solid fa-calendar-days"></i>{{ page.date | date: "%d %B %Y" }}</span>
+      {% endif %}
+
+      {% if page.time %}
+        <span><i class="fa-solid fa-clock"></i>{{ page.time }}</span>
+      {% endif %}
+
+      {% if page.location %}
+        <span><i class="fa-solid fa-location-dot"></i>{{ page.location }}</span>
+      {% endif %}
+    </div>
+
+    {% if page.registration_link %}
+      <div class="announcement-detail-actions">
+        <a class="button" href="{{ page.registration_link }}" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>Daftar / Lihat Info</span>
+        </a>
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="announcement-detail-content">
+    {{ content }}
+  </div>
+
+  <p class="announcement-back">
+    <a href="{{ '/pengumuman/' | relative_url }}"><i class="fa-solid fa-arrow-left"></i> Kembali ke daftar pengumuman</a>
+  </p>
+</article>
