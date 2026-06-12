@@ -17,6 +17,16 @@
   {% if years.size > 1 %}
     {{--}}<h3 id="{{ year.name }}">{{ year.name }}</h3>
     {% assign data = data | sort: "date" | reverse %}
+  {% else %}
+    {% assign has_order = false %}
+    {% for d in data %}
+      {% if d.order %}{% assign has_order = true %}{% endif %}
+    {% endfor %}
+    {% if has_order %}
+      {% assign data = data | sort: "order" %}
+    {% elsif data.first.date %}
+      {% assign data = data | sort: "date" | reverse %}
+    {% endif %}
   {% endif %}
 
   {% for d in data %}
